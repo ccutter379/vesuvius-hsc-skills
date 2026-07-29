@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Answering HSC Questions — Cities of Vesuvius</title>
+<style>
+/* ============================================================
+   Cities of Vesuvius — HSC Exam Skills
+   Self-contained. No external fonts, stylesheets or scripts.
+   ============================================================ */
+:root{
+  --page:#F4F5F7;
+  --panel:#ffffff;
+  --ink:#1C1F23;
+  --slate:#2E3440;
+  --red:#9B2915;
+  --ochre:#C7893A;
+  --rule:#D8DCE2;
+  --muted:#5A626C;
+  --ochre-tint:rgba(199,137,58,.10);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",Times,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--page);color:var(--ink);
+  font:16px/1.62 var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{color:var(--slate);line-height:1.22;margin:0 0 .5em;font-weight:700}
+h1{font-size:1.9rem;letter-spacing:-.015em}
+h2{font-size:1.42rem;margin-top:0}
+h3{font-size:1.1rem}
+h4{font-size:.96rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+p{margin:0 0 .85em;max-width:72ch}
+ul,ol{margin:0 0 .9em;padding-left:1.3em;max-width:72ch}
+li{margin-bottom:.4em}
+a{color:var(--red)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#EEF0F3;padding:.1em .35em;border-radius:3px}
+strong{font-weight:700}
+em{font-style:italic}
+
+/* ---------- Header / nav ---------- */
+header.top{
+  position:sticky;top:0;z-index:50;background:var(--slate);color:#fff;
+  box-shadow:0 1px 0 rgba(0,0,0,.25);
+}
+.top .bar{max-width:1240px;margin:0 auto;padding:.6rem 1.1rem;display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
+.top .brand{font-weight:700;font-size:.98rem;letter-spacing:-.01em;margin-right:auto}
+.top .brand span{color:#C9CFD8;font-weight:400}
+.top nav{display:flex;gap:.15rem;overflow-x:auto;max-width:100%}
+.top nav a{
+  color:#DCE1E7;text-decoration:none;font-size:.82rem;white-space:nowrap;
+  padding:.32rem .55rem;border-radius:4px;
+}
+.top nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+.controls{display:flex;gap:.4rem;flex-wrap:wrap}
+button.ctl{
+  font:inherit;font-size:.78rem;cursor:pointer;color:#fff;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);
+  padding:.3rem .6rem;border-radius:4px;
+}
+button.ctl:hover{background:rgba(255,255,255,.24)}
+button.ctl[aria-pressed="false"]{opacity:.6}
+
+/* ---------- Shell / rail ---------- */
+.shell{max-width:1240px;margin:0 auto;padding:1.6rem 1.1rem 5rem;display:grid;grid-template-columns:232px minmax(0,1fr);gap:2.2rem;align-items:start}
+aside.rail{position:sticky;top:4.1rem;font-size:.84rem}
+aside.rail h4{margin:1.2rem 0 .45rem;font-size:.7rem}
+aside.rail h4:first-child{margin-top:0}
+aside.rail a{display:block;color:var(--muted);text-decoration:none;padding:.2rem 0 .2rem .6rem;border-left:2px solid var(--rule);line-height:1.35}
+aside.rail a:hover{color:var(--red);border-left-color:var(--red)}
+aside.rail a .mk{color:var(--red);font-weight:700}
+main{min-width:0}
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr;gap:1.2rem;padding:1.1rem .9rem 4rem}
+  aside.rail{position:static;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:.9rem 1rem}
+}
+
+/* ---------- Panels ---------- */
+section.panel{background:var(--panel);border:1px solid var(--rule);border-radius:7px;padding:1.5rem 1.6rem;margin-bottom:1.5rem}
+@media (max-width:640px){section.panel{padding:1.1rem 1rem}}
+
+.lede{font-size:1.03rem;color:#3A424D}
+
+/* ---------- Question-set header ---------- */
+.qhead{border-bottom:2px solid var(--slate);padding-bottom:.7rem;margin-bottom:1.2rem}
+.qhead .kicker{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:700;margin-bottom:.25rem}
+.qhead h2{margin-bottom:.3rem}
+.qhead .dot{font-size:.84rem;color:var(--muted);max-width:72ch}
+.marks{
+  display:inline-block;background:var(--red);color:#fff;font-weight:700;
+  font-size:.74rem;letter-spacing:.04em;padding:.18rem .5rem;border-radius:3px;
+  vertical-align:.12em;margin-left:.45rem;white-space:nowrap;
+}
+.stepno{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:1.55rem;height:1.55rem;border-radius:50%;background:var(--slate);color:#fff;
+  font-size:.8rem;font-weight:700;margin-right:.5rem;flex:none;
+}
+.step{display:flex;align-items:center;gap:0;margin:1.7rem 0 .8rem;padding-top:.2rem}
+.step h3{margin:0}
+
+/* ---------- Sources ---------- */
+.source{border:1px solid var(--rule);border-left:4px solid var(--slate);border-radius:0 5px 5px 0;padding:.9rem 1.1rem;margin:0 0 1rem;background:#FBFCFD}
+.source .slab{font-size:.7rem;text-transform:uppercase;letter-spacing:.11em;font-weight:700;color:var(--slate);margin-bottom:.5rem}
+.source .cite{font-size:.79rem;color:var(--muted);margin:.55rem 0 0;max-width:none}
+.source .txt{font-family:var(--serif);font-size:1.02rem;line-height:1.6;margin:0}
+.source .txt p{font-family:var(--serif);margin-bottom:.7em}
+.source.arch{border-left-color:var(--ochre)}
+.wordflag{font-size:.75rem;color:var(--muted);font-style:italic;margin:.5rem 0 0}
+
+/* ---------- Figures ---------- */
+figure.fig{margin:0 0 1rem;background:#FBFCFD;border:1px solid var(--rule);border-radius:5px;padding:.7rem}
+figure.fig img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:3px}
+figure.fig figcaption{font-size:.79rem;color:var(--muted);margin-top:.6rem;line-height:1.45}
+.imgfallback{
+  border:2px dashed var(--ochre);background:var(--ochre-tint);border-radius:4px;
+  padding:1rem;font-size:.83rem;color:var(--slate);
+}
+.imgfallback b{display:block;margin-bottom:.3rem}
+.imgfallback span{display:block;color:var(--muted);margin-top:.35rem}
+.figrow{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media (max-width:700px){.figrow{grid-template-columns:1fr}}
+
+/* ---------- Deconstruction tables ---------- */
+table{border-collapse:collapse;width:100%;font-size:.86rem;margin:0 0 1rem}
+th,td{border:1px solid var(--rule);padding:.5rem .65rem;text-align:left;vertical-align:top}
+th{background:#EDEFF3;color:var(--slate);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+td:first-child{width:9.5rem;font-weight:600;color:var(--slate)}
+.scroll{overflow-x:auto;margin-bottom:1rem}
+.scroll table{margin-bottom:0;min-width:34rem}
+
+/* ---------- The question box ---------- */
+.qbox{border:2px solid var(--slate);border-radius:5px;padding:1rem 1.15rem;margin:0 0 1.1rem;background:#fff}
+.qbox .qtext{font-size:1.06rem;font-weight:600;color:var(--slate);margin:0;max-width:70ch}
+.qbox .qtext .marks{margin-left:.35rem}
+
+/* ---------- Reveal ---------- */
+details.reveal{border:1px solid var(--rule);border-radius:5px;margin:0 0 1rem;background:#fff}
+details.reveal>summary{
+  cursor:pointer;padding:.75rem 1rem;font-weight:700;color:var(--red);
+  font-size:.92rem;list-style:none;display:flex;align-items:center;gap:.5rem;
+}
+details.reveal>summary::-webkit-details-marker{display:none}
+details.reveal>summary::before{content:"▸";color:var(--ochre);font-size:.9rem}
+details.reveal[open]>summary::before{content:"▾"}
+details.reveal[open]>summary{border-bottom:1px solid var(--rule)}
+details.reveal>summary:hover{background:#FBFCFD}
+.revealbody{padding:1.1rem 1.15rem .3rem}
+
+/* ---------- Annotated model answer ---------- */
+.move{display:grid;grid-template-columns:minmax(0,66ch) 252px;gap:1.2rem;align-items:start;margin:0 0 1rem}
+.move .ans{margin:0}
+.move .ans p{margin-bottom:.6em}
+aside.note{
+  font-size:.79rem;line-height:1.5;color:#43494F;
+  background:var(--ochre-tint);border-left:3px solid var(--ochre);
+  padding:.55rem .7rem;border-radius:0 3px 3px 0;
+}
+aside.note b{color:var(--slate);display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.2rem}
+@media (max-width:1080px){
+  .move{grid-template-columns:1fr;gap:.45rem}
+  aside.note{margin-left:.9rem}
+}
+body.notes-off aside.note{display:none}
+body.notes-off .move{grid-template-columns:minmax(0,72ch)}
+
+/* ---------- Your turn ---------- */
+.yourturn{border:1px solid var(--ochre);border-radius:5px;background:#FEFCF8;padding:1rem 1.15rem;margin:1.2rem 0 0}
+.yourturn h4{color:var(--ochre);margin-bottom:.5rem}
+.check{list-style:none;padding-left:0;font-size:.9rem}
+.check li{padding-left:1.6rem;position:relative}
+.check li::before{content:"☐";position:absolute;left:0;color:var(--ochre);font-size:1.05rem;line-height:1.4}
+
+/* ---------- Callouts ---------- */
+.callout{border-left:4px solid var(--red);background:#FDF6F4;padding:.85rem 1.05rem;margin:0 0 1.1rem;border-radius:0 4px 4px 0;font-size:.92rem}
+.callout.neutral{border-left-color:var(--slate);background:#F7F8FA}
+.callout h4{color:var(--red);margin-bottom:.35rem}
+.callout.neutral h4{color:var(--slate)}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+
+/* ---------- Weak vs strong ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem}
+@media (max-width:800px){.compare{grid-template-columns:1fr}}
+.compare>div{border:1px solid var(--rule);border-radius:5px;padding:.9rem 1rem;font-size:.9rem}
+.compare .weak{border-top:3px solid var(--muted);background:#F7F8FA}
+.compare .strong{border-top:3px solid var(--red);background:#fff}
+.compare h4{margin-bottom:.45rem}
+.compare .weak h4{color:var(--muted)}
+.compare .strong h4{color:var(--red)}
+.compare p{max-width:none}
+.verdict{font-size:.8rem;color:var(--muted);border-top:1px dotted var(--rule);padding-top:.5rem;margin-top:.5rem}
+
+/* ---------- Verb glossary ---------- */
+.verb{border-bottom:1px solid var(--rule);padding:.7rem 0}
+.verb:last-child{border-bottom:none}
+.verb .v{font-weight:700;color:var(--red);font-size:.98rem}
+.verb .d{font-size:.9rem;margin:.15rem 0 .3rem}
+.verb .eg{font-size:.84rem;color:var(--muted);padding-left:.9rem;border-left:2px solid var(--rule)}
+
+footer.foot{max-width:1240px;margin:0 auto;padding:0 1.1rem 3rem;font-size:.79rem;color:var(--muted)}
+footer.foot p{max-width:80ch}
+
+/* ---------- Print ---------- */
+@media print{
+  :root{--page:#fff;--panel:#fff;--rule:#999;--muted:#333;--ochre-tint:#f2f2f2}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  header.top,aside.rail,.controls,#totop{display:none !important}
+  .shell{display:block;max-width:none;padding:0}
+  section.panel{border:none;padding:0;margin:0 0 14pt;break-inside:auto}
+  h2{font-size:14pt;border-bottom:1pt solid #000;padding-bottom:3pt}
+  h3{font-size:11.5pt}
+  details.reveal{border:1pt solid #999}
+  details.reveal>summary{display:none}
+  .revealbody{padding:8pt}
+  .move{display:block}
+  aside.note{display:block !important;margin:4pt 0 8pt 14pt;background:#f2f2f2;border-left:2pt solid #666;font-size:8.5pt;break-inside:avoid}
+  body.notes-off aside.note{display:block !important}
+  .marks{background:#000 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .stepno{background:#000 !important;color:#fff !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .qbox,.source,figure.fig,.callout,.yourturn,.verb,.compare>div{break-inside:avoid}
+  figure.fig img{max-height:8cm;filter:grayscale(100%)}
+  a{color:#000;text-decoration:none}
+  .qhead{break-after:avoid}
+}
+#totop{position:fixed;right:1rem;bottom:1rem;z-index:40;background:var(--slate);color:#fff;border:none;border-radius:50%;width:2.6rem;height:2.6rem;font-size:1.1rem;cursor:pointer;opacity:.85}
+#totop:hover{opacity:1}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar">
+    <div class="brand">Answering HSC Questions <span>· Core Study: Cities of Vesuvius</span></div>
+    <nav>
+      <a href="#start">Start</a>
+      <a href="#method">Method</a>
+      <a href="#q1">1</a><a href="#q2">2</a><a href="#q3">3</a><a href="#q4">4</a>
+      <a href="#q5">5</a><a href="#q6">6</a><a href="#q7">7</a><a href="#q8">8</a>
+      <a href="#verbs">Verbs</a>
+      <a href="#integrate">Integrating</a>
+      <a href="#mistakes">Mistakes</a>
+      <a href="#bank">Question bank</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="controls">
+      <button class="ctl" id="btnNotes" aria-pressed="true">Marker&rsquo;s notes: on</button>
+      <button class="ctl" id="btnAll">Expand all</button>
+      <button class="ctl" onclick="window.print()">Print</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+<aside class="rail">
+  <h4>Before you start</h4>
+  <a href="#start">How to use this site</a>
+  <a href="#method">The four-move method</a>
+  <h4>Worked question sets</h4>
+  <a href="#q1">1 · Geographical setting <span class="mk">3</span></a>
+  <a href="#q2">2 · The eruption <span class="mk">4</span></a>
+  <a href="#q3">3 · Economy: industries <span class="mk">5</span></a>
+  <a href="#q4">4 · Food and dining <span class="mk">6</span></a>
+  <a href="#q5">5 · Local political life <span class="mk">7</span></a>
+  <a href="#q6">6 · Women and status <span class="mk">8</span></a>
+  <a href="#q7">7 · Egyptian religion <span class="mk">10</span></a>
+  <a href="#q8">8 · Conservation &amp; ethics <span class="mk">12</span></a>
+  <h4>Reference</h4>
+  <a href="#verbs">Directive verbs</a>
+  <a href="#integrate">Integrating evidence</a>
+  <a href="#mistakes">Common mistakes</a>
+  <a href="#bank">Practice question bank</a>
+  <a href="#about">About the evidence</a>
+</aside>
+
+<main>
+
+<!-- ================= START ================= -->
+<section class="panel" id="start">
+  <h1>Answering HSC questions on the Cities of Vesuvius</h1>
+  <p class="lede">This site does one thing: it shows you the <em>thinking</em> behind a strong HSC answer. Every question below is worked through in four moves — deconstruct the sources, deconstruct the question, write the response, then annotate every sentence to show what work it is doing and why it earns marks.</p>
+
+  <div class="callout neutral">
+    <h4>About the evidence in this site</h4>
+    <p>Every source named here is a real source, with a real citation. Nothing has been invented. Where the exact wording of a translation could not be verified, the text is given as a clearly-labelled <strong>summary or standard rendering</strong> rather than inside quotation marks — check the precise wording against your own textbook and your study guide before you quote it in an assessment. Where scholars genuinely disagree (the eruption date, the function of the Building of Eumachia, how competitive the elections really were), the disagreement is presented as a disagreement, because recognising contested evidence is itself a top-band skill.</p>
+    <p><strong>On the exam structure:</strong> Section I of the HSC Ancient History paper is the Cities of Vesuvius core and is worth <strong>25 marks</strong>, made up of three or four parts, with one part worth <strong>10 to 15 marks</strong>. The eight sets below are practice across that whole range of mark values (3 to 12) — they are <em>not</em> one 25-mark paper. Check the current paper and the marking guidelines at NESA before assuming any particular split.</p>
+    <p><strong>Images:</strong> every photograph and painting here is public domain or Creative Commons licensed, credited in its caption and listed in full under <a href="#about">Images: licences and credits</a>. A few of them are records rather than remains — a watercolour copy of painted notices, an 1830 engraving, a modern copy of a mosaic — and the captions say so, because knowing the difference between evidence and a record of evidence is itself an examinable skill.</p>
+  </div>
+
+  <h3>How to use it</h3>
+  <ul>
+    <li><strong>Attempt first, reveal second.</strong> Every model answer is hidden behind a <em>Reveal the model answer</em> toggle. Write your own version before you open it — reading a model answer you have not attempted teaches almost nothing.</li>
+    <li><strong>Read the margin notes.</strong> The orange notes beside each sentence explain what that sentence is doing. That is the actual lesson; the answer itself is just the demonstration. Use the <em>Marker&rsquo;s notes</em> button in the top bar to hide them and re-read the answer clean.</li>
+    <li><strong>Do the <em>Your turn</em> question.</strong> Each set ends with a parallel question on the same skill using different evidence, and a self-marking checklist instead of an answer.</li>
+    <li><strong>Print the sets you want as handouts.</strong> Everything expands automatically when printed and the images convert to greyscale for photocopying.</li>
+  </ul>
+</section>
+
+<!-- ================= METHOD ================= -->
+<section class="panel" id="method">
+  <h2>The four-move method</h2>
+  <p>Every set on this site follows the same four moves. They are in this order for a reason: students lose most of their marks by writing before they have read.</p>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+  <p>Work through every source with the same five-part frame, whether it is a letter, an inscription or a photograph of a building:</p>
+  <div class="scroll"><table>
+    <tr><th>Frame</th><th>The question you ask</th></tr>
+    <tr><td>Origin</td><td>Who made it, where, when? Is it contemporary with what it describes?</td></tr>
+    <tr><td>Nature &amp; purpose</td><td>What <em>kind</em> of thing is it, and what was it for? An epitaph advertises; a sewer deposit advertises nothing.</td></tr>
+    <tr><td>Content</td><td>What does it actually show or say — stated plainly, before you interpret it?</td></tr>
+    <tr><td>Value</td><td>What can a historian learn from it that they could not learn elsewhere?</td></tr>
+    <tr><td>Limitations</td><td>What does it leave out, distort, or over-represent? Whose voice is missing?</td></tr>
+  </table></div>
+  <p><strong>Looking at an archaeological image is a skill in itself.</strong> Do it in this order: (1) what is the first thing you notice; (2) what is it made of, and how well made is it — cheap or costly, mass-produced or commissioned; (3) what is its <em>archaeological context</em>, that is, where exactly was it found and what was found with it. The third question is the one students skip, and it is usually where the marks are. A lararium fresco in a tavern means something different from the same fresco in a mansion.</p>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+  <p>Before writing, isolate five things: the <strong>directive verb</strong> and its NESA meaning; the <strong>topic</strong>; the <strong>city or cities</strong> named (answer only those); the <strong>source instruction</strong> (&ldquo;using Source A and Source B&rdquo; is compulsory, not a suggestion); and the <strong>mark value</strong>, which tells you how long to write.</p>
+  <div class="callout">
+    <h4>Translating marks into length</h4>
+    <p>A rough working guide, not a rule: <strong>3&ndash;4 marks</strong> — two to four sentences, no introduction, no conclusion. <strong>5&ndash;8 marks</strong> — a tight paragraph or two, opening with a claim, closing with a limitation or judgement. <strong>10&ndash;15 marks</strong> — a thesis sentence, three or four themed paragraphs, a conclusion. The commonest self-inflicted wound in this topic is writing a 12-mark answer to a 4-mark question and running out of time in Section IV.</p>
+  </div>
+
+  <div class="step"><span class="stepno">3</span><h3>Write the response — then read the annotations</h3></div>
+  <p>The marking unit of this topic is a triple: <strong>one named piece of evidence + what it reveals + one limitation or debate</strong>. If a sentence contains none of those three, ask what it is for. NESA&rsquo;s band language runs <em>limited &rarr; basic &rarr; sound &rarr; thorough &rarr; comprehensive</em>; the jump from &ldquo;sound&rdquo; to &ldquo;thorough&rdquo; is almost always the addition of evaluation, not the addition of more content.</p>
+
+  <div class="step"><span class="stepno">4</span><h3>Your turn</h3></div>
+  <p>A parallel question on the same skill with different sources, and a checklist to mark yourself against. No model answer — that is the point.</p>
+</section>
+
+<!-- ================= Q1 ================= -->
+<section class="panel" id="q1">
+  <div class="qhead">
+    <div class="kicker">Question set 1 · Short answer</div>
+    <h2>The geographical setting and natural features of Campania <span class="marks">3 marks</span></h2>
+    <p class="dot">Syllabus: <em>the geographical setting and natural features of Campania</em> (Survey). Skill focus: writing <strong>short</strong>, and using both sources when there is no room to spare.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written</div>
+    <div class="txt">
+      <p>Strabo describes the country around Vesuvius as covered with excellent fields, except at the summit, which is largely flat, unfruitful and ash-coloured, with porous rock that looks as though it has been eaten out by fire. He infers that the mountain was once alight and had craters of fire, which went out when the fuel was exhausted — and he connects this volcanic past to the exceptional fertility of the surrounding plain.</p>
+    </div>
+    <p class="cite">Strabo, <em>Geography</em> Book 5. Written by a Greek geographer working at Rome in the Augustan period, roughly 7&nbsp;BC&ndash;AD&nbsp;18 — some seventy years before the eruption.</p>
+    <p class="wordflag">Summary of Strabo&rsquo;s argument, not a verbatim translation. Check your own edition before quoting.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <figure class="fig">
+      <img src="images/bacchus-vesuvius.jpg" alt="Painted household shrine fresco showing the god Bacchus clothed entirely in bunches of grapes, standing beside a mountain covered in vines, with a large serpent below and birds above." data-need="Lararium fresco from the House of the Centenary, Pompeii: Bacchus clothed in grapes beside a vine-clad mountain, serpent below.">
+      <figcaption>Bacchus dressed in grapes beside a vine-clad mountain — usually read as Vesuvius before the eruption. Lararium fresco, House of the Centenary, Pompeii. <em>Photo: Chappsnet, CC BY-SA 4.0.</em></figcaption>
+    </figure>
+  </div>
+
+  <div class="scroll"><table>
+    <tr><th>Frame</th><th>Source A — Strabo</th><th>Source B — Bacchus fresco</th></tr>
+    <tr><td>Origin</td><td>Greek geographer at Rome, c. 7 BC&ndash;AD 18; not an eyewitness of the eruption.</td><td>Painted in a household shrine in a Pompeian house, before AD 79.</td></tr>
+    <tr><td>Nature &amp; purpose</td><td>Systematic geographical description for an educated readership.</td><td>Religious image for domestic worship — but also a celebration of the local product.</td></tr>
+    <tr><td>Content</td><td>Fertile fields; burnt, sterile summit; fire-eaten rock; inference of extinct volcanic activity.</td><td>The wine god literally clothed in the region&rsquo;s crop, beside a vine-covered mountain.</td></tr>
+    <tr><td>Value</td><td>Shows that ancient observers linked the volcano to the soil&rsquo;s richness — the reason people farmed a dangerous plain.</td><td>Shows Pompeians themselves associating the mountain with wine and prosperity, in their own homes.</td></tr>
+    <tr><td>Limitations</td><td>Written decades earlier and far away; treats Vesuvius as spent, not dormant. Praise-writing about Campania was a literary convention.</td><td>The mountain is not labelled — the identification as Vesuvius is a reasonable reading, not a certainty. Religious imagery is idealised.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Source A and Source B, outline TWO natural features of Campania that contributed to the prosperity of Pompeii. <span class="marks">3 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Outline</strong> — sketch in general terms; indicate the main features. You are <em>not</em> being asked to explain at length, evaluate, or judge.</td></tr>
+    <tr><td>Scope</td><td>TWO features. Not one, not four. The word &ldquo;natural&rdquo; excludes things people built — the forum is not a natural feature.</td></tr>
+    <tr><td>Cities</td><td>Pompeii only. Do not spend a sentence on Herculaneum.</td></tr>
+    <tr><td>Sources</td><td>Both are compulsory. At 3 marks you cannot afford a sentence that uses neither.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>Roughly a mark per feature plus a mark for linking them to prosperity through the sources. Two to three sentences. No introduction.</td></tr>
+    <tr><td>What the marker wants</td><td>Two clearly named features, each explicitly connected to <em>wealth</em>, with both sources drawn on.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Naming features but never linking them to prosperity — the question&rsquo;s actual demand. (2) Describing the sources instead of using them (&ldquo;Source B is a fresco which shows&hellip;&rdquo;). (3) Writing a 200-word answer and losing time they need later.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Campania&rsquo;s volcanic soils were the first natural feature underpinning Pompeii&rsquo;s prosperity. Source A shows that Strabo already connected the burnt, cindery summit of Vesuvius to the excellent fields below, and Source B shows Pompeians celebrating the result inside their own homes: Bacchus, the wine god, clothed entirely in grapes beside a vine-covered mountain.</p></div>
+      <aside class="note"><b>What this move does</b>Names the feature in the first six words, then uses <em>both</em> sources on that single feature. At 3 marks there is no room for a sentence that carries no source.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>These soils yielded three or four crops a year, including the vines behind the local <em>Vesuvinum</em> wine.</p></div>
+      <aside class="note"><b>What this move does</b>One short sentence of own knowledge converts the image into an economic fact. &ldquo;Outline&rdquo; does not forbid precision — it forbids length.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Second, the Sarno River and the sheltered Bay of Naples gave Pompeii access to both river and sea routes, so the wine, oil and <em>garum</em> produced from these soils and the bay&rsquo;s rich fisheries could be sold well beyond Campania — the labelled garum jars of Aulus Umbricius Scaurus turn up across the western Mediterranean.</p></div>
+      <aside class="note"><b>What this move does</b>The second feature, and the explicit link the verb demands: the feature produced <em>trade</em>, and trade produced <em>wealth</em>. Scaurus is one named example, not a list — enough to show range without padding.</aside>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);border-top:1px dotted var(--rule);padding-top:.6rem;margin-top:.4rem">Total: 89 words. That is the right size for 3 marks.</p>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn</h4>
+    <div class="qbox"><p class="qtext">Using a source of your choice and your own knowledge, outline TWO ways the land around Vesuvius was used for commercial agriculture. <span class="marks">3 marks</span></p></div>
+    <ul class="check">
+      <li>Have I named exactly two uses, and are both <em>commercial</em> rather than subsistence?</li>
+      <li>Have I used the source, rather than describing it?</li>
+      <li>Have I added one named example from my own knowledge — Jashemski&rsquo;s root casts of the vineyard near the amphitheatre, or the wine presses and buried <em>dolia</em> at Villa Regina, Boscoreale?</li>
+      <li>Is it under 100 words?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q2 ================= -->
+<section class="panel" id="q2">
+  <div class="qhead">
+    <div class="kicker">Question set 2 · Short answer</div>
+    <h2>The eruption of AD 79 and its impact <span class="marks">4 marks</span></h2>
+    <p class="dot">Syllabus: <em>the eruption of AD 79 and its impact on Pompeii and Herculaneum</em> (Survey). Skill focus: <strong>comparing</strong> along an axis rather than writing two separate descriptions.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written</div>
+    <div class="txt">
+      <p>Watching from Misenum, about thirty kilometres across the bay, Pliny the Younger describes a cloud rising from the mountain in the shape of an umbrella pine — a tall trunk spreading out into branches at the top. Ash and pumice fell, daylight failed, the ground shook repeatedly and the sea was sucked back from the shore. His uncle, Pliny the Elder, commander of the fleet at Misenum, sailed towards the eruption to observe it and then to rescue those trapped, landed at Stabiae, and died on the beach the following morning.</p>
+    </div>
+    <p class="cite">Pliny the Younger, <em>Letters</em> 6.16 and 6.20, written to the historian Tacitus at Rome around AD 106 — roughly twenty-five years after the eruption. Pliny was seventeen at the time. He never names Pompeii or Herculaneum.</p>
+    <p class="wordflag">Summary of the two letters, not a verbatim translation. The phrase &ldquo;umbrella pine&rdquo; is the standard rendering of his simile.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <figure class="fig">
+      <img src="images/boathouse-arches.jpg" alt="A row of vaulted stone boat chambers set into the excavated cliff face at Herculaneum, fronting the ancient shoreline, with the terrace of the town above." data-need="The vaulted boat chambers (fornici) on Herculaneum's buried beachfront.">
+      <figcaption>The vaulted boat chambers (<em>fornici</em>) on Herculaneum&rsquo;s buried beachfront. Between 1980 and 1982 about 300 skeletons were found inside these chambers — the discovery that rewrote the story of the town&rsquo;s death. <em>Photo: Lucamato, CC BY-SA 4.0.</em></figcaption>
+    </figure>
+  </div>
+
+  <div class="callout neutral">
+    <h4>Reading Source B</h4>
+    <p><strong>First thing you notice:</strong> the chambers are open to the sea, not part of a house — and the ground in front of them is where the beach used to be. <strong>Material and context:</strong> these are vaulted stone boat sheds built into the terrace wall; the coastline is now hundreds of metres inland because the eruption pushed it seaward, so the whole town sits below and behind the modern shore. <strong>What the context adds that the structure alone cannot:</strong> the roughly 300 skeletons excavated inside these chambers prove the direction of flight. Herculaneum&rsquo;s people did not die at home in their beds — they ran to the sea, and something caught them there. That is why the discovery changed the interpretation of a town that had for two centuries looked almost empty of victims.</p>
+  </div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Source A and Source B and your own knowledge, compare the effects of the eruption of AD 79 on Pompeii and Herculaneum. <span class="marks">4 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Compare</strong> — show how things are similar and/or different. This is a structural instruction: your answer must be organised around points of difference, not around two towns in turn.</td></tr>
+    <tr><td>Scope</td><td>&ldquo;Effects&rdquo; means both the burial of the cities and the deaths of the people — and, at the top of the range, the different <em>evidence</em> each burial produced.</td></tr>
+    <tr><td>Sources</td><td>Both, plus own knowledge. Note that Source A does not distinguish the two towns at all — so own knowledge is doing real work here, not decorating.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>Around four sentences. Roughly: one on Pompeii&rsquo;s mechanism, one on Herculaneum&rsquo;s, one on the human and evidential consequence, one of evaluation.</td></tr>
+    <tr><td>What the marker wants</td><td>A clear axis of comparison — fall phase versus surge phase — with correct detail attached to the right town, and both sources genuinely used.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Writing two disconnected descriptions with no comparative words. (2) Swapping the towns&rsquo; details — the pumice fell on Pompeii, not Herculaneum. (3) Claiming Pliny watched Pompeii being destroyed; he was thirty kilometres away and never names it.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Pompeii was buried by the very phase Pliny describes in Source A. The umbrella-pine column drove south-east on the prevailing wind and dropped pumice, or <em>lapilli</em>, on Pompeii at roughly fifteen centimetres an hour to a depth of nearly three metres; roofs collapsed under the accumulating weight, which caused the first deaths, while most residents fled during those twelve to eighteen hours of falling stone.</p></div>
+      <aside class="note"><b>What this move does</b>Anchors the comparison in Source A rather than mentioning it decoratively: the column Pliny saw <em>is</em> the mechanism that buried Pompeii. Note the causal chain — wind, fall rate, depth, roof collapse, deaths.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Herculaneum, upwind to the west, received almost no pumice at all and was instead destroyed in the second, Pelean phase, when the column collapsed: pyroclastic surges one and two struck the town at around 400 to 500 degrees Celsius and buried it under some twenty to twenty-three metres of material that set hard as tuff.</p></div>
+      <aside class="note"><b>What this move does</b>The comparison runs along one axis — <em>fall</em> versus <em>surge</em> — signalled by &ldquo;instead&rdquo;. This is what turns two descriptions into a comparison. Sigurdsson&rsquo;s numbered surges give the sequence precision.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Source B shows what that meant for people: about three hundred skeletons were excavated from these vaulted boat chambers on Herculaneum&rsquo;s beach, where those who fled seaward died instantly of thermal shock. The contrast in the surviving evidence follows directly from the contrast in burial — Herculaneum&rsquo;s airless, damp deposit carbonised organic material and preserved skeletons, while at Pompeii bodies decayed inside the loose ash and left cavities, which Fiorelli began filling with plaster in 1863.</p></div>
+      <aside class="note"><b>What this move does</b>Uses Source B for the sophisticated half of the comparison: the two eruptions produced two different <em>archives</em>. Casts versus skeletons, ash versus tuff, decay versus carbonisation. This is the sentence that separates a strong answer from a competent one.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Pliny is invaluable but limited here: writing roughly twenty-five years later from thirty kilometres away, he never names either town, so the differing fate of the two is reconstructed from stratigraphy — Sigurdsson and Carey&rsquo;s work from 1982 — and from the skeletal evidence, rather than from any eyewitness.</p></div>
+      <aside class="note"><b>What this move does</b>One sentence of evaluation, and only one. It also does something clever: it explains <em>why</em> own knowledge was necessary in this answer, which shows the marker you understand the limits of the source you were given.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn — representations</h4>
+    <figure class="fig">
+      <img src="images/briullov.jpg" alt="A vast Romantic oil painting of citizens fleeing through a Pompeian street beneath a black sky lit blood-red by the erupting volcano, with statues toppling from a building and a mother lying dead in the foreground." data-need="Karl Briullov, The Last Day of Pompeii (1827-1833).">
+      <figcaption>Karl Briullov, <em>The Last Day of Pompeii</em> (1827&ndash;1833) — the eruption as Romantic catastrophe and moral drama. <em>Public domain.</em></figcaption>
+    </figure>
+    <div class="qbox"><p class="qtext">Using the source above and your own knowledge, identify ONE nineteenth-century and ONE twenty-first-century representation of the eruption, and outline one difference in how each presents it. <span class="marks">4 marks</span></p></div>
+    <ul class="check">
+      <li>Have I named specific works? Karl Briullov&rsquo;s <em>The Last Day of Pompeii</em> (1830&ndash;33) or Bulwer-Lytton&rsquo;s novel (1834); the film <em>Pompeii</em> (2014) or a virtual-reality tour.</li>
+      <li>Have I identified each one&rsquo;s <em>purpose and audience</em>, not just its content?</li>
+      <li>Have I named a concrete difference — divine punishment of a decadent city versus digitally modelled volcanology with an invented harbour tsunami?</li>
+      <li>Have I treated representations as evidence about <em>their own era</em>, which is what this dot point is actually testing?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q3 ================= -->
+<section class="panel" id="q3">
+  <div class="qhead">
+    <div class="kicker">Question set 3 · Middle range</div>
+    <h2>The economy: industries, trade and occupations <span class="marks">5 marks</span></h2>
+    <p class="dot">Syllabus: <em>the economy: role of the forum, trade, commerce, industries, occupations</em> (Focus of study). Skill focus: getting <strong>several distinct revelations out of one short source</strong>.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written (an inscription on an object)</div>
+    <div class="txt">
+      <p>A round carbonised loaf of bread from Herculaneum, stamped before baking: &ldquo;made by Celer, slave of Quintus Granius Verus&rdquo;.</p>
+    </div>
+    <p class="cite">Carbonised stamped loaf, from the house of Quintus Granius Verus, Herculaneum. Preserved by carbonisation in the AD 79 deposit.</p>
+    <p class="wordflag">Standard rendering of the stamp. The object is simultaneously a written source and an archaeological one — worth saying so in an answer.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <figure class="fig">
+      <img src="images/bakery-mills.jpg" alt="Four hourglass-shaped lava-stone grain mills standing on circular stone bases on a paved floor, with the brick arch of a large domed bread oven at the left." data-need="Lava-stone mills and the oven in a Pompeian bakery.">
+      <figcaption>Lava-stone mills and the oven of a Pompeian bakery — milling and baking on one commercial site. <em>Photo: Isaac Harjo / ProWalk Tours, CC BY-SA 4.0.</em></figcaption>
+    </figure>
+  </div>
+
+  <div class="scroll"><table>
+    <tr><th>Frame</th><th>Source A — the loaf of Celer</th><th>Source B — the bakery</th></tr>
+    <tr><td>Origin</td><td>Made in Herculaneum on the day of the eruption; stamped by or for the household of Q. Granius Verus.</td><td>Pompeii, in use in AD 79, excavated as standing remains. The building has been consolidated by modern restorers.</td></tr>
+    <tr><td>Nature &amp; purpose</td><td>A commercial product, marked for identification — a maker&rsquo;s stamp or quality mark, not a document about society.</td><td>Industrial plant: the fixed capital of a business.</td></tr>
+    <tr><td>Content</td><td>A worker&rsquo;s name, his legal status as a slave, and his owner&rsquo;s name.</td><td>Grain mills of imported lava stone and a large wood-fired oven, integrated on one site.</td></tr>
+    <tr><td>Value</td><td>Documents branding, production for sale beyond the household, and the enslaved workforce — all in one object, incidentally rather than for display.</td><td>Shows the scale and technology of the trade: milling and baking were done under one roof.</td></tr>
+    <tr><td>Limitations</td><td>A single object. Tells us nothing about output, price or Celer&rsquo;s conditions.</td><td>Capacity is visible; turnover, profit and wages are not. The building has been consolidated by modern restorers.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Source A and Source B and your own knowledge, explain what the evidence reveals about the organisation of the baking industry in Pompeii and Herculaneum. <span class="marks">5 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Explain</strong> — make relationships evident; provide why and how. An explain answer that contains no <em>because</em>, <em>so</em> or <em>which meant</em> is usually a describe answer in disguise.</td></tr>
+    <tr><td>Scope</td><td>&ldquo;Organisation&rdquo; is the key word — how the industry was <em>structured</em>: its plant, its scale, its labour, its market. Not a description of what bread was like.</td></tr>
+    <tr><td>Cities</td><td>Both. The two sources conveniently give you one each.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>A tight paragraph, four or five sentences. Open with a claim, close with a limitation.</td></tr>
+    <tr><td>What the marker wants</td><td>Each source used for something the other cannot supply, own knowledge providing scale, and one evaluative sentence.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Opening with &ldquo;Source B is a photograph of a bakery&rdquo; — a wasted sentence at 5 marks. (2) Retelling how Roman bread was made instead of answering about organisation. (3) Getting all the way through without one limitation.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Baking in both towns was organised as a specialised, capitalised trade rather than a domestic chore. Source B shows the plant that required: four hourglass mills of imported lava stone, turned by donkeys or by slaves, standing beside a large wood-fired oven — grain-milling and baking integrated on a single commercial site.</p></div>
+      <aside class="note"><b>What this move does</b>Opens with the claim that answers &ldquo;organisation&rdquo;, then evidences it. Never open a 5-mark answer by identifying what the source is; the marker can see that.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Its scale is measurable from own knowledge: more than thirty <em>pistrina</em> have been identified at Pompeii, and eighty-one carbonised loaves were still inside the oven of the Bakery of Modestus at the moment of the eruption.</p></div>
+      <aside class="note"><b>What this move does</b>Own knowledge supplies what a photograph cannot — how many bakeries, and how much one oven held. This is exactly the source-plus-own-knowledge pairing the instruction demands.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Source A adds the labour and the commerce. Because the loaf is stamped &ldquo;made by Celer, slave of Quintus Granius Verus&rdquo;, a single object documents three things at once: bread was marked for identification or quality, which implies it left the household and entered a market; production was organised under a named owner; and the person who actually did the work was enslaved.</p></div>
+      <aside class="note"><b>What this move does</b>Three distinct revelations from one very short text, explicitly counted. High-value questions reward density, not length — and &ldquo;which implies&rdquo; is the <em>explain</em> verb doing its job.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The organisation of labour was therefore mixed: free proprietors owning the fixed capital, enslaved workers like Celer doing the milling and baking, and the finished product sold on into a town where many houses had no kitchen.</p></div>
+      <aside class="note"><b>What this move does</b>Synthesises both sources into one structural statement. Notice it also explains <em>demand</em> — the industry was large because kitchens were scarce, not because Romans liked bread.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Neither source records output, prices or wages, however: the mills reveal capacity rather than turnover and Celer&rsquo;s working conditions are unknowable, which is why the wider question of whether Pompeii&rsquo;s workshops served a local market or a regional export trade remains contested between Moeller, who argued for substantial industry, and Jongman, who saw a consumer town living off its hinterland.</p></div>
+      <aside class="note"><b>What this move does</b>Limitation plus named debate in one sentence. At 5 marks this is the difference between &ldquo;sound&rdquo; and &ldquo;thorough&rdquo; in the NESA band language.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn</h4>
+    <figure class="fig">
+      <img src="images/carbonised-loaf.jpg" alt="A round loaf of Roman bread, blackened and carbonised, scored into eight wedge-shaped segments, displayed on a wooden stand." data-need="A carbonised Roman loaf of bread, scored into segments.">
+      <figcaption>A carbonised Roman loaf, scored into eight segments before baking — the same kind of loaf that carried the stamp in Source A. <em>Photo: Tyler Bell, CC BY 2.0.</em></figcaption>
+    </figure>
+    <div class="qbox"><p class="qtext">Using the source above and your own knowledge, explain what carbonised food remains reveal about the food trades of Pompeii and Herculaneum. <span class="marks">5 marks</span></p></div>
+    <ul class="check">
+      <li>Have I opened with a claim rather than a description of the photograph?</li>
+      <li>Have I explained <em>why</em> this evidence survives — carbonisation in the airless, damp Herculaneum deposit, and charring inside sealed Pompeian ovens?</li>
+      <li>Have I used the scoring into portions as evidence of production for <em>sale</em> rather than for one household?</li>
+      <li>Have I supplied scale from own knowledge — over thirty <em>pistrina</em> at Pompeii, and eighty-one loaves left in the oven of the Bakery of Modestus?</li>
+      <li>Have I noted the limitation that carbonisation favours dry, bakeable foods, so meat and greens are under-represented in what survives?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q4 ================= -->
+<section class="panel" id="q4">
+  <div class="qhead">
+    <div class="kicker">Question set 4 · Middle range</div>
+    <h2>Everyday life: food and dining <span class="marks">6 marks</span></h2>
+    <p class="dot">Syllabus: <em>everyday life: housing, leisure activities, food and dining, clothing, health, baths, water supply, sanitation</em> (Focus of study). Skill focus: arguing that one <strong>type</strong> of evidence is stronger than another, and saying why.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written</div>
+    <div class="txt">
+      <p>A painted sign from a drinking establishment at Herculaneum, known as the <em>Ad Cucumas</em> sign, shows four wine jugs (<em>cucumae</em>) of graded size with a price marked beside each — advertising four grades of wine at four different prices.</p>
+    </div>
+    <p class="cite">Painted shop sign, Herculaneum, in use in AD 79. One of very few surviving Roman priced drink lists.</p>
+    <p class="wordflag">Described from its content rather than transcribed, because the numerals and their exact reading are best checked in your own textbook.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <figure class="fig">
+      <img src="images/thermopolium.jpg" alt="A Roman bar: a masonry counter with a large round storage jar sunk into its top, and behind it an elaborately painted shrine showing Mercury, a genius pouring a libation, two dancing Lares and a frieze of serpents." data-need="The thermopolium of Lucius Vetutius Placidus, Pompeii: counter with sunken dolium and painted lararium.">
+      <figcaption>The <em>thermopolium</em> of Lucius Vetutius Placidus, Pompeii: the counter with a sunken <em>dolium</em> in the foreground, and behind it the shop&rsquo;s own painted shrine — Mercury, the <em>genius</em> pouring a libation, two dancing Lares, and serpents below. <em>Photo: Jebulon, CC0.</em></figcaption>
+    </figure>
+  </div>
+
+  <div class="callout neutral">
+    <h4>Reading Source B</h4>
+    <p><strong>First thing you notice:</strong> the counter faces the street, and the jar is sunk into it — this is a serving hatch for passers-by, not a kitchen for a family. <strong>Material and workmanship:</strong> the masonry is plain and functional, but the shrine behind it is expensively painted, which tells you the proprietor had money and wanted it seen. <strong>Context:</strong> the bar stands on the Via dell&rsquo;Abbondanza, one of Pompeii&rsquo;s busiest commercial streets; a coin hoard was found in one of its <em>dolia</em>. <strong>What the context adds:</strong> two arguments the objects alone cannot give you. First, food retail was a street-front business dependent on passing trade. Second, this single image is also evidence for <strong>religion in the workplace</strong> — the same <em>genius</em>, Lares and serpent that appear in domestic shrines are here in a shop, which is worth remembering for question set 7.</p>
+  </div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Source A and Source B and your own knowledge, explain what the evidence reveals about food and drink in Pompeii and Herculaneum. <span class="marks">6 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Explain</strong> — again, causes and relationships. Here the best explanation is about <em>why the evidence is shaped the way it is</em> as well as what it says.</td></tr>
+    <tr><td>Scope</td><td>Both food and drink. Both cities. Aim across the social range — the 6-mark value buys you the elite as well as the ordinary.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>Five or six sentences, or two short paragraphs.</td></tr>
+    <tr><td>What the marker wants</td><td>Specific named evidence, an awareness that different evidence types have different reliability, and at least one limitation.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Listing foods with no source attached. (2) Relying on Petronius&rsquo; feast of Trimalchio as though satire were documentation. (3) Ignoring drink entirely when Source A is about drink. (4) Repeating the old claim that Romans were malnourished, which the evidence contradicts.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Food and drink in both towns were substantially <em>bought</em> rather than cooked at home, and the diet they supported was more varied and considerably better than older assumptions about the Roman poor allowed. Sources A and B are both evidence of the same commercial system: Source A prices four grades of wine, and Source B is the counter it would have been sold across.</p></div>
+      <aside class="note"><b>What this move does</b>Opens with a claim about the <em>system</em>, then states in one sentence how the two sources relate to each other. Examiners reward an answer that treats the sources as connected evidence rather than two separate exhibits.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>What people actually ate is known most directly from waste rather than from writing. The Cardo V sewer beneath Insula Orientalis II at Herculaneum, excavated by the Herculaneum Conservation Project, preserved the refuse of the ordinary tenants in the flats above: fish, sea urchin, figs, olives and grapes — and black peppercorns, an imported luxury reaching non-elite tables.</p></div>
+      <aside class="note"><b>What this move does</b>Names the site, the excavators, and the detail that breaks the assumption. Sewer deposits record what people <em>excreted</em> rather than what they claimed to eat, which makes them the least distorted dietary evidence in the topic — and pepper in an apartment block is worth more than a longer list of figs.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The retail side is documented by both sources together. The <em>Ad Cucumas</em> sign in Source A advertises four grades of wine at four prices, which implies a graded and competitive market for drink; Source B supplies the premises, with its <em>dolia</em> sunk into a counter opening straight onto the Via dell&rsquo;Abbondanza. This existed on a large scale — roughly 150 to 160 <em>thermopolia</em> at Pompeii — because a great many homes in both towns had no kitchen at all.</p></div>
+      <aside class="note"><b>What this move does</b>Pairs the written source with the archaeological one on a single point, then explains the <em>cause</em>: no kitchens, therefore a food-retail economy. That causal step is what the verb &ldquo;explain&rdquo; is asking for.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>At the top of the social scale the pattern inverts: wealthy households dined at home in the <em>triclinium</em>, reclining nine to three couches, served with vessels like the 118-piece silver service found in the House of the Menander.</p></div>
+      <aside class="note"><b>What this move does</b>One sentence covers the elite. Six marks buys you the social range, but do not let the mansions crowd out the sewer — the ordinary evidence is rarer and more interesting to a marker.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Each source nonetheless samples narrowly. The sewer deposit represents a single insula over perhaps twenty years; carbonisation preserves dry bakeable foods far better than meat or greens, skewing what survives; and the once-standard claim that counter <em>dolia</em> like the one in Source B held hot stew is now doubted, since porous unglazed jars suited dry goods better than liquids.</p></div>
+      <aside class="note"><b>What this move does</b>Three limitations in one sentence, the last of them a correction to what many textbooks still say. Markers notice students who know the field has moved.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn — water supply and sanitation</h4>
+    <div class="figrow">
+      <figure class="fig">
+        <img src="images/street-paving.jpg" alt="A Pompeian street of large basalt paving blocks worn by cart wheels, running between raised kerbed footpaths, with stepping stones set across it further along and mountains beyond." data-need="A Pompeian street with kerbed footpaths, cart ruts and stepping stones.">
+        <figcaption>A Pompeian street: basalt paving worn by cart traffic, raised kerbed footpaths, and stepping stones set across the roadway further along. <em>Photo: Carole Raddato, CC BY-SA 2.0.</em></figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/caldarium.jpg" alt="The barrel-vaulted hot room of a Roman bath house, with a large round stone basin in the apse, a sunken hot pool in the floor, and a circular opening and windows admitting light." data-need="The caldarium of the Forum Baths, Pompeii, with its labrum and lighting oculus.">
+        <figcaption>The <em>caldarium</em> of the Forum Baths, Pompeii, with its <em>labrum</em>, hot pool and lighting oculus. <em>Photo: Isaac Harjo / ProWalk Tours, CC BY-SA 4.0.</em></figcaption>
+      </figure>
+    </div>
+    <div class="qbox"><p class="qtext">Using the sources above and your own knowledge, explain what the evidence reveals about water supply and sanitation in Pompeii and Herculaneum. <span class="marks">6 marks</span></p></div>
+    <ul class="check">
+      <li>Have I traced the system: the Augustan <em>Aqua Augusta</em> branch, the <em>castellum aquae</em> at the Porta Vesuvio, fourteen water towers, roughly forty public fountains, lead <em>fistulae</em> to subscribing houses?</li>
+      <li>Have I used the sharpest contrast between the towns — Pompeii&rsquo;s streets doubling as storm drains, hence stepping stones, against Herculaneum&rsquo;s proper underground Cardo V sewer, which meant it needed none?</li>
+      <li>Have I explained the <em>consequence</em> for daily life rather than just describing pipes?</li>
+      <li>Have I noted that both towns were mid-repair in AD 79 after the earthquake, so this is a snapshot of disruption rather than normality?</li>
+      <li>Have I flagged that the health effects of lead pipes are contested rather than asserting lead poisoning?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q5 ================= -->
+<section class="panel" id="q5">
+  <div class="qhead">
+    <div class="kicker">Question set 5 · Middle range</div>
+    <h2>Local political life <span class="marks">7 marks</span></h2>
+    <p class="dot">Syllabus: <em>local political life: decuriones, magistrates, comitium</em> (Focus of study). Skill focus: an <strong>assess</strong> question — leading with a judgement and proving it.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written</div>
+    <div class="txt">
+      <p>&ldquo;The fruit-sellers together with Helvius Vestalis urge you to elect Marcus Holconius Priscus duumvir with judicial power.&rdquo;</p>
+    </div>
+    <p class="cite">A painted electoral notice (<em>programma</em>) on a street facade at Pompeii. About 2,800 such notices survive, most relating to the elections of AD 79.</p>
+    <p class="wordflag">Standard rendering of a typical <em>programma</em>. The formula — supporters, candidate, office — is fixed; the supporters vary.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <figure class="fig">
+      <img src="images/programmata.jpg" alt="A watercolour reconstruction of a Pompeian shopfront on the Via dell'Abbondanza, its upper wall covered in large painted Latin notices naming candidates, above a row of painted panels." data-need="A record of the painted electoral notices on a shopfront on the Via dell'Abbondanza, Pompeii.">
+      <figcaption>Painted electoral notices covering a shopfront on the Via dell&rsquo;Abbondanza, Pompeii — recorded in a watercolour made when the paint was fresher than it is today. Candidate names including <span style="white-space:nowrap">CN&nbsp;HELVIVM</span> and <span style="white-space:nowrap">M&nbsp;HOLCONIVM</span> are legible. <em>Public domain.</em></figcaption>
+    </figure>
+  </div>
+
+  <div class="callout neutral">
+    <h4>Reading Source B</h4>
+    <p><strong>First thing you notice:</strong> the size and quality of the lettering — this is professional signwriting, not scratched graffiti. That matters, because <em>programmata</em> were commissioned and paid for, so they measure organised support rather than spontaneous popularity. <strong>Context:</strong> the wall is a shopfront on the Via dell&rsquo;Abbondanza, one of the busiest commercial streets in the town. <strong>What the context adds:</strong> election campaigning happened on trading premises along the main thoroughfares, borrowing other people&rsquo;s walls — including, elsewhere on the same street, the frontage of the bar run by the innkeeper Asellina, a woman who could not vote but publicly backed candidates.</p>
+    <p class="wordflag">One further point, and a genuinely examinable one: this image is a <strong>nineteenth-century watercolour record</strong> of the notices, not a photograph of the wall as it survives now. It is therefore evidence <em>about</em> the evidence — invaluable, because the paint has faded badly since, but one further step removed from AD 79. Recognising the difference between evidence and a record of evidence is exactly the kind of source criticism that earns marks.</p>
+  </div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Source A and Source B and your own knowledge, assess the usefulness of painted electoral notices as evidence for local political life in Pompeii. <span class="marks">7 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Assess</strong> — make a judgement of value or quality. An assess answer with no judgement sentence cannot reach the top bands, however much content it contains.</td></tr>
+    <tr><td>Scope</td><td>&ldquo;Usefulness&rdquo; means <em>useful for what</em>. Be specific: highly useful for the mechanics of campaigning, useless for voting outcomes.</td></tr>
+    <tr><td>Cities</td><td>Pompeii — but the comparison with Herculaneum, which has almost no <em>programmata</em>, is a legitimate and powerful limitation.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>Two solid paragraphs, or five to six developed sentences. Judgement first, judgement again at the end in different words.</td></tr>
+    <tr><td>What the marker wants</td><td>Quantity of the evidence, a specimen quoted briefly, the supporter networks, the formulaic limitation, at least one named historian, and a verdict.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Describing what <em>programmata</em> say without ever judging their usefulness. (2) Transcribing whole notices to fill space. (3) Treating painted enthusiasm as evidence of votes won. (4) Naming no scholars, when this dot point has a genuine and well-known debate. (5) Forgetting that much of what we can read was recorded by nineteenth-century copyists before the paint faded.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Painted electoral notices are the richest surviving evidence for electoral culture anywhere in the Roman world, and they are outstandingly useful for the mechanics and the social reach of campaigning — but they measure visibility rather than votes, and they survive in usable quantity at Pompeii alone.</p></div>
+      <aside class="note"><b>What this move does</b>A 7-mark <em>assess</em> needs a judgement in the first sentence, with a built-in &ldquo;but&rdquo;. Everything that follows now has a job: proving one half or the other of this sentence.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Their first value is sheer quantity: roughly 2,800 <em>programmata</em> survive on Pompeian facades, professionally painted by named <em>scriptores</em> and mostly relating to the elections of AD 79 — a density of political documentation no other Roman town can match. Source A shows the standard formula of supporters, candidate and office: the fruit-sellers, together with Helvius Vestalis, urging the election of Marcus Holconius Priscus as duumvir with judicial power.</p></div>
+      <aside class="note"><b>What this move does</b>Scale first, then a single short specimen. Notice the quotation is trimmed to the phrase that carries the formula — never transcribe a whole source when a clause will do.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Their real analytical value lies in those supporter lists, because they reveal a politics reaching far beyond the male electorate. Trade groups campaign as blocs — fruit-sellers, muleteers, goldsmiths, fishermen; the millers and &ldquo;all the worshippers of Isis&rdquo; back Gnaeus Helvius Sabinus; and women who could not vote endorse candidates publicly, like the innkeeper Asellina and her staff. Source B shows how physically dominant this was: an entire shopfront on the Via dell&rsquo;Abbondanza given over to notices, so that campaigning was inseparable from the commercial streetscape.</p></div>
+      <aside class="note"><b>What this move does</b>Uses Source B for what a text alone cannot prove — the scale and placement of campaigning on trading premises. The image supplies the find-spot argument rather than decorating the answer.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Their limitations are equally clear. The formulae are almost empty of policy, the praise of Gaius Julius Polybius because &ldquo;he brings good bread&rdquo; being a rare exception; and because the notices were commissioned display, painted for patrons by professionals, enthusiasm on a wall cannot be converted into votes at the <em>comitium</em>.</p></div>
+      <aside class="note"><b>What this move does</b>Limitation delivered with evidence rather than as a generic complaint, and the &ldquo;good bread&rdquo; exception is deployed to prove the rule. That is a more sophisticated move than simply asserting the notices are formulaic.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>This is why the notices support opposed readings. Mouritsen, and earlier Castrén, argued that the candidate pool was small and controlled by a narrow propertied class, with some offices possibly uncontested and the notices functioning as displays of patronage loyalty; Franklin, by contrast, reconstructed genuine multi-candidate contests for the aedileship in the seventies. That the corpus also contains jokes and sabotage — Marcus Cerrinius Vatia &ldquo;endorsed&rdquo; by the late-night drinkers, the sneak-thieves and the whole company of sleepers — shows how carefully each notice must be read before it is counted as support.</p></div>
+      <aside class="note"><b>What this move does</b>Names historians on both sides, which is what &ldquo;assess&rdquo; means at Stage 6: weighing scholarly positions, not just cataloguing source strengths. The joke notices then supply a methodological point rather than mere colour.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The decisive limitation, though, is comparative: Herculaneum has produced essentially no <em>programmata</em>, so an entire town&rsquo;s electoral life is effectively unknowable. The notices are therefore indispensable evidence for how Pompeians campaigned, unreliable evidence for how they voted, and silent about political life anywhere else.</p></div>
+      <aside class="note"><b>What this move does</b>Closes by returning to the opening judgement in fresh words, with a three-part verdict. Never end an <em>assess</em> answer with a summary of content — end it with a position.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn — using a written and an archaeological source together</h4>
+    <figure class="fig">
+      <img src="images/amphitheatre.jpg" alt="The curving exterior wall of the amphitheatre at Pompeii in low evening light, a long arcade of blind arches with an external staircase rising over them, umbrella pines to the left." data-need="The amphitheatre at Pompeii, exterior.">
+      <figcaption>The amphitheatre at Pompeii (c. 70 BC), the earliest stone amphitheatre known — its exterior arcade and external stairs. <em>Photo: Marco Ober, CC BY-SA 4.0.</em></figcaption>
+    </figure>
+    <div class="qbox"><p class="qtext">Explain how Tacitus, <em>Annals</em> 14.17 and the archaeological evidence can be used together to reconstruct the amphitheatre riot of AD 59, and identify one limitation of each. <span class="marks">7 marks</span></p></div>
+    <ul class="check">
+      <li>Have I stated what each source contributes that the other cannot — Tacitus supplies the outcome, that Nero and the Senate banned Pompeii&rsquo;s games for ten years and exiled the sponsor Livineius Regulus; the fresco from the House of Actius Anicetus supplies the local perspective on the brawl itself?</li>
+      <li>Have I explained why this event matters — it is one of very few episodes attested in <em>both</em> a text and an image, and it shows Rome&rsquo;s ultimate authority over local life?</li>
+      <li>Have I given a limitation of each: Tacitus is brief, written around AD 116 and Rome-focused; the fresco is naive in style and its purpose is debated?</li>
+      <li>Have I resisted turning this into a general description of gladiatorial games?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q6 ================= -->
+<section class="panel" id="q6">
+  <div class="qhead">
+    <div class="kicker">Question set 6 · Middle range</div>
+    <h2>Social structure: the status and roles of women <span class="marks">8 marks</span></h2>
+    <p class="dot">Syllabus: <em>the social structure: men, women, freedmen, slaves</em> (Focus of study). Skill focus: resolving an apparent <strong>contradiction</strong> in the evidence, and noticing small textual details.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written</div>
+    <div class="txt">
+      <p>A painted notice on the outside wall of a large Pompeian property announces that, on the estate of Julia Felix, daughter of Spurius, there are available to let: an elegant bath suite, shops with upper rooms, and apartments — on a five-year lease.</p>
+    </div>
+    <p class="cite">Rental notice of Julia Felix, <em>CIL</em> IV 1136, painted on the Praedia of Julia Felix, Pompeii (II.4). Datable only to somewhere between the earthquake of AD 62/63 and the eruption.</p>
+    <p class="wordflag">Summary of the notice&rsquo;s content in the wording used in your study guide, not a verbatim translation.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <div class="figrow">
+      <figure class="fig">
+        <img src="images/juliafelix-praedia.jpg" alt="A long colonnade of slender fluted columns under a modern roof, looking out over the formal planted garden and ruined rooms of a very large Pompeian property." data-need="The portico and garden of the Praedia of Julia Felix, Pompeii.">
+        <figcaption>The portico and garden of the Praedia of Julia Felix (II.4), Pompeii — the scale of the estate she advertised for lease in Source A. <em>Photo: Jamie Heath, CC BY-SA 2.0.</em></figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/eumachia-statue.jpg" alt="A marble portrait statue of a Roman woman in a long mantle drawn up over her head, standing on an inscribed base in a niche against a red-panelled wall." data-need="The statue of Eumachia, public priestess, dedicated by the fullers, Pompeii.">
+        <figcaption>The statue of Eumachia, public priestess, standing in the building she funded — its base records that the fullers dedicated it to her. <em>Photo: Isaac Harjo / ProWalk Tours, CC BY-SA 4.0.</em></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="callout neutral">
+    <h4>Reading the images</h4>
+    <p>With the Praedia, the thing to notice is <strong>scale</strong>. Source A is a short advertisement; this is what it was advertising — a property so large that its baths, shops and apartments could be let separately, occupying most of a city block. The notice tells you a woman was in business; the ruins tell you how much business.</p>
+    <p>With the Eumachia statue, the question to ask is never &ldquo;what does she look like?&rdquo; but <strong>who paid for it</strong>. A trade association — the fullers — commissioned a portrait of a female patron and set it up inside the building she had funded, and said so on the base. The dedicator tells you about power; the drapery does not.</p>
+  </div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Sources A and B and your own knowledge, explain what the evidence reveals about the status and roles of women in Pompeii. <span class="marks">8 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Explain</strong> — and the thing needing explanation is a contradiction: women were legally powerless yet publicly prominent. A good answer names that tension and resolves it.</td></tr>
+    <tr><td>Scope</td><td>&ldquo;Status <em>and</em> roles&rdquo; — two things. Status is legal and social standing; roles are what women actually did.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>Two developed paragraphs, five or six substantial sentences. Enough room for four named women.</td></tr>
+    <tr><td>What the marker wants</td><td>Named individuals across free, freed and enslaved women; the legal ceiling stated plainly; and a limitation about whose evidence survives.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Writing only about Eumachia, so the answer becomes a biography. (2) Claiming women had no public role, which the evidence contradicts. (3) Ignoring enslaved women completely — the largest group and the least documented. (4) Never mentioning that these wealthy women are exceptions.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Women in Pompeii were excluded from the vote and from every magistracy, yet the evidence shows citizen women owning property, running businesses, holding religious office and funding public buildings. Status therefore has to be read on two separate axes — legal, where women were powerless, and economic and religious, where some were formidable.</p></div>
+      <aside class="note"><b>What this move does</b>Names the contradiction that trips most students up, then resolves it with a framework of two axes. Once the axes are set, the rest of the answer organises itself.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Source A is a woman transacting business in public and in her own name. The notice, <em>CIL</em> IV 1136, offers the elegant baths, the shops with upper rooms and the apartments of the Praedia of Julia Felix on a five-year lease — a very large estate converted into rental premises, most plausibly in the years after the earthquake of AD 62/63, when demand for housing and bathing would have been high.</p></div>
+      <aside class="note"><b>What this move does</b>Says what the source is <em>doing</em>, not what it contains, and adds a causal suggestion for <em>why</em> she did it — hedged with &ldquo;most plausibly&rdquo;, because the notice cannot be dated precisely.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Source B shows the second axis. Eumachia, <em>sacerdos publica</em>, funded the largest building on the forum&rsquo;s east side in her own name and her son&rsquo;s, dedicating it to Concordia Augusta and Pietas — and the fullers erected this statue to her inside it. A trade association publicly honouring a female patron is evidence not of decorative respectability but of real patronage power.</p></div>
+      <aside class="note"><b>What this move does</b>Reads the statue through its dedicator. Always ask who commissioned an honorific monument and what they wanted from the relationship.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Other named women fill out the pattern across the social range: Mamia built a temple to the Genius of Augustus on her own land at her own expense and was granted a <em>schola</em> bench-tomb by the council; the freedwoman Naevoleia Tyche built her family&rsquo;s tomb at the Herculaneum Gate, complete with ship relief; Asellina ran a bar and lent her frontage to candidates; and the freedwoman Poppaea Note appears in wax-tablet slave-sale documents.</p></div>
+      <aside class="note"><b>What this move does</b>Eight marks buys four named women spanning freeborn, freed and commercial roles. Named individuals are the currency of this dot point — a general claim about &ldquo;Roman women&rdquo; earns nothing.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The ceiling was nonetheless absolute, and the sources show it. None of these women voted or held office; Eumachia&rsquo;s benefaction advanced her son&rsquo;s career as much as her own standing; and the notice in Source A identifies Julia Felix as the daughter of Spurius. Female public presence operated through property, priesthood and family — never through the <em>cursus honorum</em>.</p></div>
+      <aside class="note"><b>What this move does</b>This is the analytical heart of the answer. The filiation &mdash; &ldquo;daughter of Spurius&rdquo; &mdash; is a tiny textual detail with a large implication. Train yourself to hunt for details like it; they are what distinguishes analysis from summary.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The evidence is also badly skewed towards the visible. Eumachia, Mamia and Julia Felix were wealthy enough to buy stone and paint; enslaved women appear mainly through other people&rsquo;s words — the roughly 130 graffiti of the <em>lupanar</em>, written overwhelmingly by clients and using what may be trade-names rather than real ones, and a gold bracelet from Moregine inscribed <em>dominus ancillae suae</em>, &ldquo;from the master to his slave-girl&rdquo;.</p></div>
+      <aside class="note"><b>What this move does</b>Ends on whose voice survives. In this topic the strongest limitation is almost always about silence in the record rather than bias within it.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn — freedmen</h4>
+    <figure class="fig">
+      <img src="images/street-tombs.jpg" alt="An 1830 engraving of the Street of the Tombs at Pompeii: a paved road running away from the viewer lined on both sides with tomb monuments of varying shapes, with small figures in early nineteenth-century dress among the ruins." data-need="The Street of the Tombs outside the Herculaneum Gate, Pompeii.">
+      <figcaption>The Street of the Tombs outside the Herculaneum Gate, Pompeii — engraving by Luigi Rossini, 1830. Note that this is a nineteenth-century <em>representation</em> as well as a record: the figures in period dress are there to supply scale and sentiment. <em>Public domain.</em></figcaption>
+    </figure>
+    <div class="qbox"><p class="qtext">Using the source above and your own knowledge, assess the value and limitations of funerary monuments as evidence for the position of freedmen in Pompeii. <span class="marks">8 marks</span></p></div>
+    <ul class="check">
+      <li>Have I opened with a judgement containing a &ldquo;but&rdquo;?</li>
+      <li>Have I used named monuments — the altar tomb of Naevoleia Tyche and Gaius Munatius Faustus, with its ship relief and <em>bisellium</em> relief marking him as an <em>Augustalis</em>?</li>
+      <li>Have I explained the freedman strategy: barred from magistracies themselves, they advanced their freeborn sons, as when the six-year-old Numerius Popidius Celsinus was enrolled in the <em>ordo</em> after his father paid to rebuild the Temple of Isis?</li>
+      <li>Have I included Mouritsen&rsquo;s caution — freedmen are over-represented in epitaphs, so frequency on tombstones is not population share?</li>
+      <li>Have I noted the survivorship problem: monumental tombs belong to the successful, and the poor are nearly invisible?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q7 ================= -->
+<section class="panel" id="q7">
+  <div class="qhead">
+    <div class="kicker">Question set 7 · Extended response</div>
+    <h2>Religion and the influence of Egyptian culture <span class="marks">10 marks</span></h2>
+    <p class="dot">Syllabus: <em>religion: household gods, temples, foreign cults and religions, tombs</em> and <em>the influence of Greek and Egyptian cultures: art and architecture</em>. Skill focus: a thesis that <strong>names its own structure</strong>, and refusing a false binary.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written</div>
+    <div class="txt">
+      <p>The dedicatory inscription from the Temple of Isis at Pompeii records that Numerius Popidius Celsinus, son of Numerius, rebuilt the Temple of Isis from its foundations at his own expense after it had collapsed in the earthquake, and that the decurions, on account of his generosity, enrolled him in their number without fee — although he was six years old.</p>
+    </div>
+    <p class="cite">Dedication of N. Popidius Celsinus, Temple of Isis, Pompeii (VIII.7.28). The temple was rebuilt after the earthquake of AD 62/63 and excavated in 1764.</p>
+    <p class="wordflag">Summary of the inscription&rsquo;s content, not a verbatim translation. The boy&rsquo;s age is the detail everything else hangs on.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological</div>
+    <div class="figrow">
+      <figure class="fig">
+        <img src="images/anubis-priest.jpg" alt="A framed fresco panel on a red ground showing a standing figure in a long robe wearing the jackal head of the Egyptian god Anubis, beside an altar." data-need="Fresco of a priest masked as Anubis, from the Temple of Isis, Pompeii.">
+        <figcaption>A priest masked as the Egyptian god Anubis, from the Temple of Isis, Pompeii — the cult&rsquo;s ritual personnel, painted on its own walls. Now in Naples. <em>Public domain.</em></figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/temple-isis.jpg" alt="The excavated Temple of Isis at Pompeii: a small temple on a high podium reached by steps, with columns, a decorated pediment and the enclosed purgatorium building beside it, cypresses behind." data-need="The Temple of Isis, Pompeii.">
+        <figcaption>The Temple of Isis, Pompeii (VIII.7.28) — the first public building fully rebuilt after the earthquake. <em>Photo: Mary Harrsch, CC BY-SA 4.0.</em></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="scroll"><table>
+    <tr><th>Frame</th><th>Source A — the Celsinus dedication</th><th>Source B — the Anubis fresco and the temple</th></tr>
+    <tr><td>Origin</td><td>Carved for public display at Pompeii after AD 62/63, in the name of a six-year-old boy.</td><td>Painted on the walls of the Temple of Isis before AD 79; removed to Naples by early excavators. The temple was excavated in 1764.</td></tr>
+    <tr><td>Nature &amp; purpose</td><td>An honorific dedication — a public claim about a family, in the fixed formulaic language of civic benefaction.</td><td>Cult decoration inside a working sanctuary: images of the rites for the eyes of worshippers, not a record made for historians.</td></tr>
+    <tr><td>Content</td><td>Temple rebuilt from the foundations at private expense; council membership granted without fee; the dedicant is six.</td><td>A priest wearing the jackal mask of Anubis beside an altar; and a complete temple with podium, steps and the <em>purgatorium</em> for Nile water.</td></tr>
+    <tr><td>Value</td><td>Documents both the priority given to the Isis cult and the exact mechanism by which freedman money bought a son&rsquo;s rank.</td><td>Shows the cult actually being performed — costumed personnel, altars, sacred water — rather than merely commemorated. Egyptian religion was practised, not just referenced.</td></tr>
+    <tr><td>Limitations</td><td>The formula conceals the real actor — the father, Ampliatus, whose freedman status barred him from office. One famous case, not a pattern.</td><td>Cult imagery is idealised and may show ideal rather than routine practice. Removal to Naples in the 1760s stripped the paintings of their exact position in the building.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Sources A and B and your own knowledge, explain what the evidence reveals about the place of Egyptian religion in Pompeii. <span class="marks">10 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Explain</strong> at 10 marks. This is extended-response territory: you need a thesis, structured body paragraphs, and a concluding judgement, even though the verb is not &ldquo;assess&rdquo;.</td></tr>
+    <tr><td>Scope</td><td>&ldquo;Place&rdquo; is broad and generous — it invites public cult, private devotion, social function and fashion. Use all of it.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>A thesis sentence plus three or four themed paragraphs plus a judgement. Organise by theme, never source by source.</td></tr>
+    <tr><td>What the marker wants</td><td>A clear structure signalled in advance; the Isis temple&rsquo;s rebuilding priority; the freedman social ladder; the cult-versus-decoration question handled with nuance rather than a yes or no.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Working through Source A, then Source B, then own knowledge — the single commonest structural error in this topic. (2) Reducing the answer to &ldquo;Egyptian influence was just fashion&rdquo;. (3) Forgetting that the dedication is about <em>social mobility</em> as much as religion. (4) Describing the temple&rsquo;s architecture at length without saying what it reveals.</td></tr>
+  </table></div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Egyptian religion at Pompeii was neither a marginal foreign import nor merely decorative fashion. The evidence reveals three overlapping registers — a fully public civic cult, a private devotional practice inside ordinary homes, and a broader decorative Aegyptomania — and the interpretive task is to distinguish worship from décor without pretending the categories were ever sealed off from one another.</p></div>
+      <aside class="note"><b>What this move does</b>A 10-mark thesis that names its own structure. The marker now knows there will be three body sections and what each will argue. It also stakes out a position against the two easy extremes.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Source A places the cult at the centre of civic life. The dedication records that Numerius Popidius Celsinus rebuilt the Temple of Isis from its foundations at his own expense after the earthquake, and that the decurions enrolled him in the council without fee — although he was six years old.</p></div>
+      <aside class="note"><b>What this move does</b>States the source compactly and lands on the absurd detail. Do not explain the joke yet; let the next sentence do the analysis.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Two things follow from that. First, priority: the Temple of Isis was the first public building in Pompeii to be fully rebuilt after the earthquake of AD 62/63, while the Capitolium at the head of the forum still stood damaged in AD 79 — a striking measure of the cult&rsquo;s standing in the town&rsquo;s order of repair. Second, mobility: the real payer was the boy&rsquo;s father, the freedman Ampliatus, who was barred from holding office himself and therefore bought his freeborn son&rsquo;s entry into the <em>ordo</em>. Egyptian religion functioned as a social ladder as well as a faith.</p></div>
+      <aside class="note"><b>What this move does</b>One source, two distinct revelations, each numbered and each with a consequence. This is how a 10-mark answer generates depth without needing more sources.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The temple itself confirms a genuinely functioning sanctuary rather than a status trophy. Excavated in 1764 with its apparatus still in place, it retained a <em>purgatorium</em> basin for sacred Nile water, frescoes of Egyptian rites and landscapes, <em>sistra</em>, and the remains of offerings on its altars. The cult was notably popular with women, freedmen and slaves, and it operated openly beside the civic gods — a personal, salvation-promising religion tolerated within, not against, the town&rsquo;s public cults.</p></div>
+      <aside class="note"><b>What this move does</b>Uses the surviving apparatus to make an argument about <em>practice</em> rather than architecture. The last clause pre-empts a misconception: Roman religion was pluralist, so &ldquo;foreign&rdquo; did not mean &ldquo;persecuted&rdquo;.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Worship also moved indoors, into houses and even shops, which is where the cult stops being civic display and becomes personal religion. Isis-Fortuna bronzes and Anubis figures appear among the household gods in lararia such as that of the House of the Golden Cupids, standing alongside the dancing Lares, the <em>genius</em> and the protective serpent that every Pompeian shrine carried. Egyptian deities were therefore naturalised into the daily offerings led by the <em>paterfamilias</em>.</p></div>
+      <aside class="note"><b>What this move does</b>Marks the shift from public to private devotion — the step that turns a list of monuments into an argument about belief. Note that Source B cannot prove this point, so it is carried by own knowledge; saying so honestly is better than forcing a source to say something it does not.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The third register is fashion rather than faith. After Rome annexed Egypt in 30 BC, Nilotic imagery became chic: the mosaic border in the House of the Faun with its hippopotamus, crocodile and ibis; pygmy burlesques in dining rooms; sphinxes and lotus motifs in Third-Style wall painting; and the long ornamental <em>euripus</em> canal of the Praedia of Julia Felix, evoking the waterways of the Nile delta.</p></div>
+      <aside class="note"><b>What this move does</b>Four quick named examples, no elaboration. Once a section&rsquo;s point is established, evidence can be listed economically — save the sentence-level analysis for the contested material.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>These registers cannot be cleanly separated, and the strongest reading of the evidence accepts that. A <em>sistrum</em> in the Temple of Isis is unambiguously worship; a pygmy fresco in a <em>triclinium</em> is unambiguously entertainment; an Isis-Fortuna statuette in a household shrine sits between the two. A Pompeian who commissioned a Nilotic floor and also made offerings to Anubis would have seen no contradiction, because Roman religion accommodated exactly that overlap. Egyptian religion was thus genuinely believed, socially useful and fashionable at the same time.</p></div>
+      <aside class="note"><b>What this move does</b>Refuses the false binary the question invites, and explains <em>why</em> the binary is false. Arguing that two categories overlap — and giving a clear case at each pole plus one in the middle — is a top-band move.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Two limitations bind the whole picture. The Bourbon excavators stripped the Temple of Isis of its frescoes to the royal collection at Naples, so its decorative and ritual programme is partly reconstructed from records rather than read in place; and because the cult&rsquo;s apparent popularity is measured largely from one exceptionally well-preserved temple, its true scale relative to the civic gods cannot be quantified. Small figurines are also portable, so their find-spots do not always prove where they were venerated.</p></div>
+      <aside class="note"><b>What this move does</b>Closes on the limits of knowledge, not on a summary. Notice these are limitations of the <em>evidence base</em>, which is more sophisticated than complaining that a single source is biased.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn — Greek influence</h4>
+    <div class="figrow">
+      <figure class="fig">
+        <img src="images/neptune-mosaic.jpg" alt="A brilliantly coloured wall mosaic in glass paste showing Neptune and Amphitrite standing side by side, framed by mosaic columns, a scallop-shell arch and a border of real shells." data-need="Glass-paste wall mosaic of Neptune and Amphitrite, Herculaneum.">
+        <figcaption>Glass-paste wall mosaic of Neptune and Amphitrite, Herculaneum — Greek gods in Roman domestic splendour, framed with real shells. <em>Photo: Jebulon, CC0.</em></figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/alexander-mosaic.jpg" alt="Looking out from a columned room in the House of the Faun at Pompeii across a large floor mosaic of a cavalry battle towards a colonnaded garden beyond." data-need="The exedra of the Alexander Mosaic, House of the Faun, Pompeii.">
+        <figcaption>The exedra of the House of the Faun, Pompeii, with the Alexander Mosaic in the floor. <strong>What you see here is a modern copy laid in the original position</strong> — the mosaic itself was lifted in 1843 and is in the Naples National Archaeological Museum. <em>Photo: Maarten Heerlien, CC BY 2.0.</em></figcaption>
+      </figure>
+    </div>
+    <div class="qbox"><p class="qtext">Using the source above and your own knowledge, assess the extent of Greek influence on the art and architecture of Pompeii and Herculaneum. <span class="marks">10 marks</span></p></div>
+    <ul class="check">
+      <li>Does my thesis take a position on <em>extent</em> — pervasive and structural, or superficial and imitative?</li>
+      <li>Have I organised by theme (architecture, art, ideas) rather than by source?</li>
+      <li>Have I covered the deep roots: the sixth-century BC Doric temple in the Triangular Forum, the Greek-influenced street grid, and Campania&rsquo;s position beside <em>Magna Graecia</em>?</li>
+      <li>Have I used named artworks: the Alexander Mosaic in the House of the Faun with its roughly 1.5 million tesserae; the <em>Doryphoros</em> herm from the Samnite Palaestra; the Greek Epicurean library of Philodemus at the Villa of the Papyri?</li>
+      <li>Have I evaluated: these are Roman-era <em>copies</em>, so they evidence the reception of Greek art rather than Greek art itself, and the Alexander Mosaic was lifted from its context in 1843?</li>
+      <li>Have I reached a judgement, not just a catalogue?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= Q8 ================= -->
+<section class="panel" id="q8">
+  <div class="qhead">
+    <div class="kicker">Question set 8 · Extended response</div>
+    <h2>Conservation, ethics and tourism <span class="marks">12 marks</span></h2>
+    <p class="dot">Syllabus: <em>changing interpretations</em>, <em>issues of conservation and reconstruction</em>, <em>ethical issues</em> and <em>the value and impact of tourism</em> (Reconstructing and conserving the past). Skill focus: a full extended response with a <strong>two-part judgement</strong>.</p>
+  </div>
+
+  <div class="step"><span class="stepno">1</span><h3>Deconstruct the sources</h3></div>
+
+  <div class="source">
+    <div class="slab">Source A — written (modern scholarly positions)</div>
+    <div class="txt">
+      <p><strong>Position 1.</strong> Robert Fowler has argued that renewed excavation of the Villa of the Papyri at Herculaneum is justified, because hundreds of lost works of Greek and Latin literature may lie in its still-unexcavated rooms — arguably the greatest recoverable prize in classical scholarship.</p>
+      <p><strong>Position 2.</strong> Andrew Wallace-Hadrill has argued against it: exposing the villa would endanger it and divert scarce funds from keeping the already-excavated sites alive. On this view the best conservation is often not to excavate at all.</p>
+    </div>
+    <p class="cite">Summary of two publicly argued scholarly positions in the debate over the Villa of the Papyri.</p>
+    <p class="wordflag">These are summaries of published arguments, <strong>not</strong> direct quotations. Attribute the positions, not the wording.</p>
+  </div>
+
+  <div class="source arch">
+    <div class="slab">Source B — archaeological (two images)</div>
+    <div class="figrow">
+      <figure class="fig">
+        <img src="images/victim-cast.jpg" alt="A plaster cast of an eruption victim lying inside a glass display case at Pompeii, with a visitor leaning over the top of the case holding a water bottle." data-need="A plaster cast of an eruption victim displayed in a glass case at Pompeii.">
+        <figcaption>A plaster cast of an eruption victim in its display case at Pompeii. Most casts contain real human bone, so the same object is at once human remains, archaeological evidence and exhibit. <em>Photo: daryl_mitchell, CC BY-SA 2.0.</em></figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="images/conservation-work.jpg" alt="Scaffolding, steel props and protective sheeting supporting the upper storey of a building on a Pompeian street, with reproductions of its frescoes printed on the site hoarding below." data-need="Conservation scaffolding and propping on the Via dell'Abbondanza, Pompeii.">
+        <figcaption>Conservation scaffolding, props and sheeting on the Via dell&rsquo;Abbondanza, Pompeii, with reproductions of the building&rsquo;s frescoes on the hoarding. <em>Public domain.</em></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="step"><span class="stepno">2</span><h3>Deconstruct the question</h3></div>
+
+  <div class="qbox"><p class="qtext">Using Sources A and B and your own knowledge, assess the effectiveness of responses to the conservation and ethical problems at Pompeii and Herculaneum. <span class="marks">12 marks</span></p></div>
+
+  <div class="scroll"><table>
+    <tr><td>Verb</td><td><strong>Assess</strong> at 12 marks — a sustained judgement, not a survey. &ldquo;Effectiveness&rdquo; requires you to state the criteria you are judging against.</td></tr>
+    <tr><td>Scope</td><td>Two problem clusters — physical conservation and ethics — and the responses to each. Tourism belongs in the answer because it both funds and damages the sites.</td></tr>
+    <tr><td>Marks &rarr; length</td><td>Thesis, four to six themed paragraphs, conclusion. Roughly 700 to 900 words under exam conditions.</td></tr>
+    <tr><td>What the marker wants</td><td>Named programmes with dates and figures; a judgement that distinguishes <em>what worked</em> from <em>what remains fragile</em>; explicit use of all sources; and a position in the conclusion.</td></tr>
+    <tr><td>How students lose marks</td><td>(1) Listing problems and then listing responses, with no evaluation joining them. (2) Blaming Italy, which the post-2012 record does not support. (3) Leaving ethics out because conservation is easier to write about. (4) Ending with &ldquo;more needs to be done&rdquo;, which is not a judgement.</td></tr>
+  </table></div>
+
+  <div class="callout">
+    <h4>Before you write: the planning template for 10&ndash;15 marks</h4>
+    <ol>
+      <li><strong>Deconstruct</strong> — circle the verb, the topic words, the cities, and the source instruction.</li>
+      <li><strong>Thesis</strong> — one sentence taking a position, with a built-in &ldquo;but&rdquo;.</li>
+      <li><strong>Three to four body paragraphs by theme, never source by source</strong> — each pairing a provided source with your own named evidence, each containing one evaluative sentence.</li>
+      <li><strong>Weigh, do not list</strong> — say which evidence is strongest and what stays uncertain.</li>
+      <li><strong>Conclusion</strong> — return to the thesis in fresh words. No new evidence.</li>
+    </ol>
+  </div>
+
+  <div class="step"><span class="stepno">3</span><h3>The modelled response</h3></div>
+
+  <details class="reveal"><summary>Reveal the model answer</summary><div class="revealbody">
+    <div class="move">
+      <div class="ans"><p>Because excavation is itself an act of destruction, the central duty at the Vesuvian sites has shifted over the last quarter-century from discovery to custodianship. Judged against that duty, the responses since 2010 have been substantially effective in slowing physical decay and markedly effective in reforming how the dead are studied — but they remain donor-dependent, unevenly funded, and permanently exposed to the very tourism that pays for them.</p></div>
+      <aside class="note"><b>What this move does</b>Names the criterion (custodianship) before judging against it, then delivers a three-part verdict with a &ldquo;but&rdquo;. An <em>assess</em> question at 12 marks lives or dies on this sentence.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The scale of the problem has to be established before any response can be judged. Excavation un-preserves: roughly two-thirds of Pompeii&rsquo;s sixty-six hectares stand open to sun, rain, rising damp, root damage and pigeons, and the Maiuri-era repairs are now themselves a threat, as reinforced concrete and iron armatures rust and split the ancient fabric they were installed to hold. Modern history added to it — some 160 Allied bombs struck Pompeii in 1943, and the Irpinia earthquake of November 1980 toppled walls across both towns. Visitors add their own damage, from abraded paving to names scratched into frescoes such as those of the Fullery of Stephanus. The crisis point came on 6 November 2010, when the Schola Armaturarum collapsed after torrential rain, bringing a state of emergency, international headlines about &ldquo;Italy&rsquo;s shame&rdquo; and close UNESCO scrutiny.</p></div>
+      <aside class="note"><b>What this move does</b>Establishes magnitude and causes so the judgement has something to measure. Notice the causes are deliberately mixed — natural, historical, managerial and visitor-driven — which sets up a more discriminating evaluation later.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The Italian response was the Great Pompeii Project from 2012: roughly €105 million, of which about €78 million came from the European Union, directed by a special director-general, Massimo Osanna. It stabilised the dangerous boundary between excavated and unexcavated ground, rebuilt drainage, restored and reopened dozens of buildings including the House of the Vettii after a twenty-year restoration completed in 2023, and added CCTV, lighting and accessible routes; favourable UNESCO reports in 2015 and 2017 lifted the threat of inscription on the List of World Heritage in Danger. The second image in Source B shows the everyday reality of that work: scaffolding, steel props and sheeting holding up an upper storey on the Via dell&rsquo;Abbondanza, with reproductions of the building&rsquo;s own frescoes on the hoarding in front. Judged on outcomes the programme was effective. Judged on structure it remains fragile, because deadline-driven grant expenditure is not the same thing as the permanent maintenance budget the site actually requires.</p></div>
+      <aside class="note"><b>What this move does</b>The two-part judgement — effective on outcomes, fragile on structure — is what separates genuine evaluation from a list of achievements. Concrete figures and dates do the persuading.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Internationally, the Herculaneum Conservation Project has been the stronger model. Since 2001 the Packard Humanities Institute, funded by David W. Packard, has worked with the Italian authorities and the British School at Rome under Andrew Wallace-Hadrill to repair roofs, reactivate the ancient Cardo V sewer as a working drain, and — most importantly — fund a resident craft team carrying out continuous maintenance rather than episodic rescue. UNESCO has praised it as a model public-private partnership. Its weakness is the source of its strength: it depends on the continuity of a single donor, and Herculaneum&rsquo;s four excavated hectares make success far easier to achieve than across Pompeii&rsquo;s forty-four.</p></div>
+      <aside class="note"><b>What this move does</b>Identifies the transferable idea — infrastructure first, maintenance not rescue — and then names the limit of its transferability. Comparative judgement between two responses scores far higher than describing both.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Ethically the shift has been sharper still, because custodianship has displaced spectacle as the governing principle. Guzzo&rsquo;s moratorium of 1999 reserved the unexcavated third of Pompeii for better future methods, on the logic that a deposit can only be dug once. Source A frames the resulting dilemma precisely: Fowler urging renewed excavation at the Villa of the Papyri for the lost literature it may still hold, Wallace-Hadrill answering that exposure would endanger the villa and drain funds from the living site. What makes this more than a stalemate is that technology has partly dissolved it — from 2023 the Vesuvius Challenge&rsquo;s machine-learning &ldquo;virtual unwrapping&rdquo; of scroll scans has recovered passages of Greek Epicurean philosophy from scrolls that were never physically opened.</p></div>
+      <aside class="note"><b>What this move does</b>Uses Source A as the hinge of the ethics section rather than as an illustration, then argues that a technical advance can reframe an ethical deadlock. That argumentative move is characteristic of top-band responses.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The treatment of the dead shows the clearest improvement of all. Bourbon and Victorian custodians staged skeletons in tableaux for distinguished visitors and jumbled the bones into stores, destroying the very individual integrity that modern science now needs. The first image in Source B captures what has not changed and what has: the cast still lies in a glass case with visitors leaning over it, yet the science around it is now non-invasive. In the 2015 Pompeii Cast Project Estelle Lazer&rsquo;s team used a portable X-ray unit and a CT scanner to image eighty-six casts without damaging them, recovering ages, injuries and surprisingly good teeth, while also revealing the metal rods, missing bones and heavy re-sculpting inside them. Since most casts contain real human bone, they are simultaneously human remains, archaeological evidence and museum spectacle, and the ICOM Code of Ethics classes such material as sensitive. Uniquely, the Vesuvian dead have no descendant community to advocate for them, so custodians must do it — a duty the ancient-DNA results of 2024 underlined when the famous &ldquo;mother and child&rdquo; cast proved to be an unrelated adult male.</p></div>
+      <aside class="note"><b>What this move does</b>Uses the image to hold two things in tension — unchanged display practice, transformed scientific method — then names the governing framework. The 2024 DNA reversal shows <em>why</em> ethical caution matters evidentially, not merely that it is decent.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>Tourism remains the unresolved pressure, and it is genuinely double-edged. Around four million visitors in recent record years fund staff, maintenance and research in one of Italy&rsquo;s poorer regions, and built the public constituency that made the Great Pompeii Project politically possible; the same visitors abrade pavements, raise humidity in frescoed rooms, and generate theft, with nearly 600 objects recorded stolen between 1975 and 2000. Management is now genuinely sophisticated: a cap of 20,000 visitors a day with personalised tickets from 2024, defined one-way routes, rotating closures so that houses can rest and be conserved, active dispersal to Herculaneum, Oplontis and Stabiae, and virtual tours that deliver access with no footfall at all.</p></div>
+      <aside class="note"><b>What this move does</b>Gives tourism its double character in one sentence, then answers with named current solutions. Vague calls for &ldquo;better management&rdquo; earn nothing; a dated visitor cap earns marks.</aside>
+    </div>
+    <div class="move">
+      <div class="ans"><p>The responses have therefore been effective where they were structural and continuous — the Herculaneum maintenance model, the 1999 moratorium, the turn to non-invasive imaging — and only partially effective where they were episodic and grant-funded. No solved state exists, because conservation here is a permanent balance between the access that pays for the sites and the exposure that consumes them. The honest verdict is that Pompeii and Herculaneum are now being managed well rather than saved.</p></div>
+      <aside class="note"><b>What this move does</b>Returns to the thesis in fresh words, introduces no new evidence, and commits to a position. &ldquo;Managed rather than saved&rdquo; is a judgement a marker can reward; &ldquo;more needs to be done&rdquo; is not.</aside>
+    </div>
+  </div></details>
+
+  <div class="yourturn">
+    <h4>Your turn — tourism</h4>
+    <figure class="fig">
+      <img src="images/tourist-crowds.jpg" alt="A tour group of about fifteen visitors standing and walking on the worn basalt paving of a street at Pompeii, with ruined walls and doorways on both sides." data-need="Visitors on a street at Pompeii.">
+      <figcaption>A tour group on a street at Pompeii — note the worn paving underfoot. <em>Photo: daryl_mitchell, CC BY-SA 2.0.</em></figcaption>
+    </figure>
+    <div class="qbox"><p class="qtext">Using the source above and your own knowledge, evaluate the value and impact of tourism at Pompeii and Herculaneum. <span class="marks">12 marks</span></p></div>
+    <ul class="check">
+      <li>Have I stated my <em>criteria</em>? &ldquo;Evaluate&rdquo; means judging against something — revenue, preservation, education, local livelihoods.</li>
+      <li>Does my thesis hold both halves at once: tourism as lifeblood and as slow poison?</li>
+      <li>Have I quantified where I can — visitor numbers, roughly 500,000 a year at Herculaneum, the 20,000-a-day cap from 2024, some 600 objects stolen 1975&ndash;2000?</li>
+      <li>Have I named specific solutions rather than gesturing at management: timed and capped ticketing, one-way routes, rotating closures, dispersal to Oplontis and Stabiae, virtual tours?</li>
+      <li>Have I acknowledged what the caps cost — pressure shifted to peak bookings and onto other sites?</li>
+      <li>Does my conclusion commit to a position rather than sitting on the fence?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= VERBS ================= -->
+<section class="panel" id="verbs">
+  <h2>Directive verbs — what each one is actually asking</h2>
+  <p>These are the NESA key words. The single fastest way to lose marks in Ancient History is to answer a verb you were not asked. Each entry below has the meaning and a one-line worked example from this topic.</p>
+
+  <div class="verb"><div class="v">Identify</div><div class="d">Recognise and name. No explanation required, and none is rewarded.</div><div class="eg"><em>Identify the volcanologist who reconstructed the sequence of the AD 79 eruption.</em> &rarr; &ldquo;Haraldur Sigurdsson.&rdquo; That is the whole answer.</div></div>
+
+  <div class="verb"><div class="v">Outline</div><div class="d">Sketch in general terms; indicate the main features. Brief, no evaluation.</div><div class="eg"><em>Outline the two phases of the eruption.</em> &rarr; Two sentences: a Plinian pumice-fall phase burying Pompeii, then a Pelean phase of pyroclastic surges that destroyed Herculaneum first.</div></div>
+
+  <div class="verb"><div class="v">Describe</div><div class="d">Provide characteristics and features. More detail than <em>outline</em>, but still no argument.</div><div class="eg"><em>Describe the plaster casts.</em> &rarr; Plaster poured into body-shaped cavities in the hardened ash from 1863, preserving posture, clothing folds and sandals.</div></div>
+
+  <div class="verb"><div class="v">Explain</div><div class="d">Relate cause and effect; make relationships evident; give the why and the how. If your answer contains no <em>because</em>, <em>so</em> or <em>which meant</em>, you have not explained.</div><div class="eg"><em>Explain why the evidence from Herculaneum differs from Pompeii&rsquo;s.</em> &rarr; Because Herculaneum was buried under twenty-plus metres of airless, damp deposit, organic material carbonised rather than decaying, so wood, food and scrolls survive there and cavities do not.</div></div>
+
+  <div class="verb"><div class="v">Account for</div><div class="d">State the reasons for something. Very close to <em>explain</em>, but pointed at causes only.</div><div class="eg"><em>Account for the priority given to rebuilding the Temple of Isis.</em> &rarr; Reasons: the cult&rsquo;s popularity among freedmen, women and slaves, and a wealthy freedman&rsquo;s need to buy his son civic rank.</div></div>
+
+  <div class="verb"><div class="v">Compare</div><div class="d">Show how things are similar and different. This is a structural instruction: organise by axis of comparison, not two blocks side by side.</div><div class="eg"><em>Compare the effects of the eruption on the two cities.</em> &rarr; Organise by mechanism (fall versus surge), depth of burial, cause of death, and the type of evidence each produced.</div></div>
+
+  <div class="verb"><div class="v">Analyse</div><div class="d">Identify components and the relationships between them; draw out implications.</div><div class="eg"><em>Analyse what the Celsinus dedication reveals.</em> &rarr; Break it into cult priority, freedman wealth, the legal bar on freedmen holding office, and the council&rsquo;s willingness to sell rank.</div></div>
+
+  <div class="verb"><div class="v">Assess</div><div class="d">Make a judgement of value, quality or outcome. Your answer must contain an actual judgement sentence, ideally at the start and again at the end.</div><div class="eg"><em>Assess the usefulness of graffiti for the economy.</em> &rarr; &ldquo;Graffiti are indispensable for occupations and prices but cannot establish the scale of trade&hellip;&rdquo;</div></div>
+
+  <div class="verb"><div class="v">Evaluate</div><div class="d">Make a judgement based on criteria; determine value. The extra demand over <em>assess</em> is that you should say what you are judging <em>against</em>.</div><div class="eg"><em>Evaluate the impact of tourism.</em> &rarr; Name your criteria first — revenue, physical preservation, education, local economy — then judge against each.</div></div>
+
+  <div class="verb"><div class="v">To what extent</div><div class="d">Decide how far a claim holds and commit to a position on a sliding scale. &ldquo;Partly&rdquo; is acceptable only if you say <em>which</em> parts.</div><div class="eg"><em>To what extent does the Forum give a comprehensive view of the economy?</em> &rarr; Substantially for regulation and marketing; not at all for the fulleries, bakeries and the port.</div></div>
+
+  <div class="verb"><div class="v">Discuss</div><div class="d">Identify the issues and provide points for and against. Balance is required, but so is a conclusion.</div><div class="eg"><em>Discuss the ethical issues raised by displaying human remains.</em> &rarr; Scholarship, conservation, public education, local interests, and the dignity of the dead — then a view.</div></div>
+
+  <div class="callout neutral">
+    <h4>A note on Stage 6 standard</h4>
+    <p>Even where the verb is a low-order one such as <em>outline</em> or <em>describe</em>, Year 12 answers are expected to use precise terminology, named evidence and correct citation. Where the verb is <em>assess</em>, <em>evaluate</em>, <em>analyse</em> or <em>to what extent</em>, the marker is looking for contestability: what is debated, who debates it, and what remains uncertain. Saying honestly that the evidence cannot settle a question is a strength at this level, not a hedge.</p>
+  </div>
+</section>
+
+<!-- ================= INTEGRATE ================= -->
+<section class="panel" id="integrate">
+  <h2>Integrating source evidence into a paragraph</h2>
+  <p>Most lost marks in this topic come from one habit: writing <em>about</em> the sources instead of arguing <em>with</em> them. The three pairs below are the same content written twice.</p>
+
+  <div class="compare">
+    <div class="weak">
+      <h4>Weak</h4>
+      <p>Source B is a photograph of a bakery in Pompeii. It shows some mills and an oven. This tells us that the Romans made bread. There were many bakeries in Pompeii.</p>
+      <p class="verdict">Four sentences, no claim, no argument. It identifies and describes the source, which the marker can already do, and the final sentence has no evidence attached.</p>
+    </div>
+    <div class="strong">
+      <h4>Strong</h4>
+      <p>Baking was a capitalised trade rather than a household task: the bakery of Popidius Priscus in Source B integrates lava-stone mills with a large wood-fired oven on one commercial site, and with more than thirty <em>pistrina</em> at Pompeii the industry clearly served a market, not a family.</p>
+      <p class="verdict">One sentence. It opens with a claim, uses the source as proof of that claim, and adds own knowledge that supplies the scale the photograph cannot.</p>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="weak">
+      <h4>Weak</h4>
+      <p>Pliny the Younger wrote two letters about the eruption. He said the cloud looked like an umbrella pine. However, Pliny is a biased source because he wrote it later, so it is not very reliable.</p>
+      <p class="verdict">The evaluation is generic and slightly wrong. &ldquo;Biased&rdquo; is doing no work, &ldquo;not very reliable&rdquo; is unsupported, and in fact volcanology has confirmed Pliny&rsquo;s physical details — the real limitations lie elsewhere.</p>
+    </div>
+    <div class="strong">
+      <h4>Strong</h4>
+      <p>Pliny&rsquo;s umbrella-pine simile is precise enough that volcanologists still call this eruption type Plinian; his limitations are therefore not accuracy but distance and purpose — he watched from thirty kilometres away, wrote some twenty-five years later to memorialise his uncle, and never names either city.</p>
+      <p class="verdict">Concedes the source&rsquo;s strength before naming its actual weaknesses, and each weakness is specific and evidenced. This is what evaluation looks like at Stage 6.</p>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="weak">
+      <h4>Weak</h4>
+      <p>Women in Pompeii had no rights. They could not vote. Eumachia was a priestess who built a big building, which shows some women were important.</p>
+      <p class="verdict">The first and third sentences contradict each other and the contradiction is never addressed. &ldquo;Important&rdquo; and &ldquo;big&rdquo; are not analytical words.</p>
+    </div>
+    <div class="strong">
+      <h4>Strong</h4>
+      <p>Legal exclusion and public prominence coexisted: Eumachia held no office and could not vote, yet as <em>sacerdos publica</em> she funded the largest building on the forum&rsquo;s east side and the fullers honoured her with a statue inside it — female authority ran through property and priesthood rather than through the <em>cursus honorum</em>.</p>
+      <p class="verdict">Names the tension, resolves it with a distinction, and supports both halves with specific evidence. The last clause is the analytical payoff.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>The pattern underneath all three</h4>
+    <p><strong>Claim &rarr; source as proof &rarr; own knowledge for scale or context &rarr; one limitation or debate.</strong> That four-part unit is the mark-scoring shape of this topic. If a sentence does none of those four jobs, cut it and use the time on Section IV.</p>
+  </div>
+</section>
+
+<!-- ================= MISTAKES ================= -->
+<section class="panel" id="mistakes">
+  <h2>Common mistakes, and the fix</h2>
+
+  <div class="scroll"><table>
+    <tr><th>The mistake</th><th>The fix</th></tr>
+    <tr><td>&ldquo;Pliny the Younger watched Pompeii being destroyed.&rdquo;</td><td>He watched from Misenum, about thirty kilometres away, and never names Pompeii or Herculaneum. Write that he described the eruption, not the cities&rsquo; destruction.</td></tr>
+    <tr><td>Treating 24 August AD 79 as certain fact.</td><td>Present it as the traditional date from medieval manuscripts of Pliny and from Cassius Dio, then give the autumn evidence — the charcoal graffito of 17 October found in Region V in 2018, autumn produce among the carbonised food, sealed wine <em>dolia</em> — and note that most scholars now favour late October while certainty is impossible.</td></tr>
+    <tr><td>Answering a 4-mark question at 12-mark length.</td><td>Convert marks into sentences before you write. Time lost in Section I cannot be recovered in Section IV.</td></tr>
+    <tr><td>Structuring an extended response source by source.</td><td>Structure by theme. Each themed paragraph should pair a provided source with your own named evidence.</td></tr>
+    <tr><td>&ldquo;Source A is a written source which tells us&hellip;&rdquo;</td><td>Delete the sentence. Open with the claim and let the source prove it.</td></tr>
+    <tr><td>Asserting that Pompeii was a great industrial exporter.</td><td>Name the debate: Moeller argued for a substantial wool-export industry, Jongman for a consumer town living off its hinterland. Say that the commerce was diverse and energetic but its scale is contested.</td></tr>
+    <tr><td>Claiming the counter <em>dolia</em> in bars held hot stew.</td><td>The porous unglazed jars suited dry goods. &ldquo;Fast-food bar&rdquo; is fine; confident menus are not.</td></tr>
+    <tr><td>&ldquo;Only the old, the weak, women and children died.&rdquo;</td><td>Estelle Lazer&rsquo;s Pompeian sample is a normal cross-section of ages and sexes. Survival was a matter of timing and luck, not fitness.</td></tr>
+    <tr><td>&ldquo;Freedmen took over a city in decline.&rdquo;</td><td>That is Maiuri&rsquo;s dated crisis theory. Wallace-Hadrill showed grand and humble houses interleaved in the same <em>insulae</em>, with commerce and residence always mixed. Cite the counter-argument before you judge.</td></tr>
+    <tr><td>Claiming you can identify enslaved people&rsquo;s skeletons.</td><td>Legal status leaves no skeletal signature. Argue from documents, architecture and objects instead — and say openly that the gap exists.</td></tr>
+    <tr><td>Treating Petronius&rsquo; Trimalchio as evidence for Pompeii.</td><td>It is Roman satire written for elite amusement. Usable as evidence of attitudes towards freedmen; not usable as documentation of Pompeian society.</td></tr>
+    <tr><td>Asserting that Christians lived at Pompeii.</td><td>The evidence — a lost charcoal graffito and the Herculaneum wall &ldquo;cross&rdquo; that may be a shelf bracket&rsquo;s shadow — is weak and disputed. Say unproven.</td></tr>
+    <tr><td>&ldquo;The eruption preserved the cities, so they are safe.&rdquo;</td><td>Excavation un-preserves: everything exposed begins to decay. The modern battle is conservation, not discovery.</td></tr>
+    <tr><td>Writing that Italy neglects Pompeii.</td><td>Use the 2010 Schola Armaturarum collapse as the crisis and the Great Pompeii Project and Herculaneum Conservation Project as the partial turnaround. A balanced evaluation scores higher than blame.</td></tr>
+    <tr><td>Calling the Building of Eumachia &ldquo;the fullers&rsquo; headquarters&rdquo;.</td><td>Its function is genuinely debated — guild hall, cloth market or multi-purpose portico. Say so; it is a neat example of the limits of archaeological inference.</td></tr>
+    <tr><td>Ending an <em>assess</em> answer with a summary.</td><td>End with a judgement. Restate your thesis in fresh words and commit to a position.</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= BANK ================= -->
+<section class="panel" id="bank">
+  <h2>Practice question bank</h2>
+  <p>Questions across the range of mark values in Section I. Work them with the four-move method: deconstruct the sources you choose, deconstruct the question, write, then mark yourself against the checklists in the sets above.</p>
+
+  <h3>Short answer</h3>
+  <ol>
+    <li>Outline TWO natural features of Campania and explain how each contributed to the prosperity of Pompeii or Herculaneum. <span class="marks">4</span></li>
+    <li>Compare the effects of the eruption of AD 79 on Pompeii and Herculaneum. <span class="marks">4</span></li>
+    <li>Describe TWO contributions of Giuseppe Fiorelli to the excavation of Pompeii. <span class="marks">4</span></li>
+    <li>Identify ONE nineteenth-century and ONE twenty-first-century representation of Pompeii, and outline one difference in how they present the eruption. <span class="marks">4</span></li>
+    <li>Outline the sequence of events in the eruption of AD 79 as reconstructed by Sigurdsson. <span class="marks">4</span></li>
+    <li>Outline what the evidence reveals about occupations in Pompeii and/or Herculaneum. <span class="marks">4</span></li>
+  </ol>
+
+  <h3>Middle range</h3>
+  <ol>
+    <li>How useful is graffiti for understanding the economy of Pompeii? <span class="marks">6</span></li>
+    <li>What does the evidence reveal about the role of the forum in the economy of Pompeii? <span class="marks">6</span></li>
+    <li>Using a source of your choice and your own knowledge, explain what funerary monuments reveal about freedmen. <span class="marks">6</span></li>
+    <li>Explain what the evidence reveals about household religion in Pompeii and Herculaneum. <span class="marks">6</span></li>
+    <li>What does the evidence reveal about the influence of Egyptian culture on Pompeii? <span class="marks">6</span></li>
+    <li>Describe the influence of Greek culture on the art and architecture of Pompeii and Herculaneum. <span class="marks">6</span></li>
+    <li>Using sources and your own knowledge, describe the everyday life of people in Pompeii and Herculaneum. <span class="marks">7</span></li>
+    <li>How useful are funerary monuments for understanding the social position of freed slaves (<em>liberti</em>)? <span class="marks">5</span></li>
+    <li>What does the evidence reveal about the status and roles of women in Pompeii and Herculaneum? <span class="marks">8</span></li>
+    <li>Assess the usefulness and reliability of Pliny the Younger&rsquo;s account for an historian studying the eruption of Vesuvius. <span class="marks">8</span></li>
+  </ol>
+
+  <h3>Extended response</h3>
+  <ol>
+    <li>Assess the usefulness and reliability of Pliny the Younger&rsquo;s letters for an historian studying the eruption of AD 79. <span class="marks">10</span></li>
+    <li>Explain how new research and technologies have changed interpretations of human remains at Pompeii and Herculaneum. <span class="marks">10</span></li>
+    <li>Explain what the evidence reveals about the health of the people of Pompeii and Herculaneum. <span class="marks">10</span></li>
+    <li>&ldquo;Egyptian influence in Pompeii was a matter of fashion, not faith.&rdquo; To what extent does the evidence support this view? <span class="marks">10</span></li>
+    <li>Discuss the ethical issues raised by the study and display of human remains from Pompeii and Herculaneum. <span class="marks">10</span></li>
+    <li>Assess the value and limitations of frescoes as evidence of everyday life in Pompeii and Herculaneum. <span class="marks">12</span></li>
+    <li>Assess the value and limitations of the plaster casts for investigating how people lived and died at Pompeii. <span class="marks">12</span></li>
+    <li>Discuss the problems of conservation at Pompeii and Herculaneum and evaluate the effectiveness of Italian and international responses. <span class="marks">12</span></li>
+    <li>Evaluate the value and impact of tourism at Pompeii and Herculaneum. <span class="marks">12</span></li>
+    <li>Assess the value and limitations of funerary monuments and inscriptions for understanding the social structure of Pompeii and/or Herculaneum. <span class="marks">15</span></li>
+    <li>To what extent does the Forum of Pompeii provide a comprehensive view of economic activity in first-century AD Campania? <span class="marks">15</span></li>
+  </ol>
+
+  <div class="callout">
+    <h4>Three things to do in every answer</h4>
+    <ol>
+      <li><strong>Read the question twice and note which city or cities it names.</strong> Answer only those.</li>
+      <li><strong>Per paragraph: one named piece of evidence, what it reveals, one limitation.</strong> That triple is the mark-scoring unit of this topic.</li>
+      <li><strong>Flag debates honestly.</strong> The eruption date, the function of the Eumachia building, how competitive the elections were, whether Christians were present, the health effects of lead pipes. Showing where knowledge is uncertain is a top-band skill, not a weakness.</li>
+    </ol>
+    <p>Know your researchers in pairs: <strong>Bisel</strong> (Herculaneum skeletons) and <strong>Lazer</strong> (Pompeii bones and casts); <strong>Maiuri</strong> (crisis theory) and <strong>Wallace-Hadrill</strong> (continuity); <strong>Moeller</strong> (producer city) and <strong>Jongman</strong> (consumer city); <strong>Fowler</strong> (dig the Villa) and <strong>Wallace-Hadrill</strong> (conserve it).</p>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="panel" id="about">
+  <h2>About the evidence, and what to check</h2>
+
+  <h3>How the sources here were handled</h3>
+  <ul>
+    <li><strong>Every source is real and cited.</strong> Ancient writers are cited by author, work and book or letter number; archaeological evidence by site, building and, where relevant, its <em>CIL</em> inscription number.</li>
+    <li><strong>No invented quotations.</strong> Where the precise wording of a translation could not be verified, the text is given as a labelled summary or a standard rendering, outside quotation marks. Short formulaic texts — the <em>programma</em> in set 5, the loaf stamp in set 3 — follow the renderings in your own study guide.</li>
+    <li><strong>Contested points are marked as contested,</strong> including the eruption date, the function of the Building of Eumachia, how competitive Pompeii&rsquo;s elections really were, whether Christians were present, and the health effects of lead pipes.</li>
+    <li><strong>Figures that vary between studies</strong> — surge temperatures, visitor numbers, population estimates — are given as ranges or as approximations rather than as single precise values.</li>
+  </ul>
+
+  <h3>Worth checking against your own materials</h3>
+  <ul>
+    <li>The <strong>exact wording</strong> of any source you intend to quote in an assessment task, especially Pliny&rsquo;s umbrella-pine simile, the Julia Felix rental notice (<em>CIL</em> IV 1136) and the Popidius Celsinus dedication.</li>
+    <li>The <strong>numerals on the <em>Ad Cucumas</em> sign</strong> in set 4. The sign advertises four grades of wine at four prices; the precise prices are best taken from your textbook.</li>
+    <li>The <strong>current Section I structure and mark allocation.</strong> Section I is 25 marks with three or four parts, one worth 10 to 15 marks, but the split changes from year to year — check the most recent paper and marking guidelines.</li>
+    <li><strong>Population and casualty figures.</strong> Roughly 1,150 bodies recovered at Pompeii and about 300 skeletons in the Herculaneum boat chambers are reasonably firm; total death tolls and city populations are estimates.</li>
+    <li><strong>Two images are records rather than remains,</strong> and the captions say so: the electoral notices in set 5 are a nineteenth-century watercolour copy, and the Street of the Tombs in set 6 is an 1830 engraving. The Alexander Mosaic in set 7 is photographed as the modern copy laid in its original position; the original is in Naples.</li>
+  </ul>
+
+  <h3>Images: licences and credits</h3>
+  <p>Every image on this site is freely licensed — public domain, CC0, or Creative Commons — and sourced from Wikimedia Commons, so this page can be shared publicly. Each caption credits its photographer and licence, and the table below gives the full list with links to the original files. Where a licence is CC BY-SA, that attribution must travel with the image if you reuse it elsewhere.</p>
+  <div class="scroll"><table>
+    <tr><th>File</th><th>Subject</th><th>Author</th><th>Licence</th><th>Source</th></tr>
+    <tr><td><code>bacchus-vesuvius.jpg</code></td><td>Bacchus and Vesuvius lararium fresco, House of the Centenary, Pompeii</td><td>Chappsnet</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Lararium_fresco_of_Bacchus_and_Vesuvius,_House_of_the_Centenary,_Pompeii.jpg">Commons</a></td></tr>
+    <tr><td><code>boathouse-arches.jpg</code></td><td>The boat chambers on the ancient beachfront, Herculaneum</td><td>Lucamato</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Ercolano_-_Panoramica_della_spiaggia.jpg">Commons</a></td></tr>
+    <tr><td><code>briullov.jpg</code></td><td>Karl Briullov, <em>The Last Day of Pompeii</em> (1827–1833)</td><td>Karl Bryullov</td><td>Public domain</td><td><a href="https://commons.wikimedia.org/wiki/File:Karl_Brullov_-_The_Last_Day_of_Pompeii_-_Google_Art_Project.jpg">Commons</a></td></tr>
+    <tr><td><code>bakery-mills.jpg</code></td><td>Mills and oven in a Pompeian bakery</td><td>Isaac Harjo of Prowalk Tours</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Bakery_with_oven_and_mills_Pompeii_ProWalk_Tours.jpg">Commons</a></td></tr>
+    <tr><td><code>carbonised-loaf.jpg</code></td><td>Carbonised loaf of Roman bread</td><td>Tyler Bell</td><td><a href="https://creativecommons.org/licenses/by/2.0" rel="license">CC BY 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:A_loaf_of_carbonized_bread_(51358291690).jpg">Commons</a></td></tr>
+    <tr><td><code>thermopolium.jpg</code></td><td>Thermopolium of Lucius Vetutius Placidus, Pompeii</td><td>Jebulon</td><td><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license">CC0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Thermopolium_Lucius_Vetutius_Placidus_Pompeii.jpg">Commons</a></td></tr>
+    <tr><td><code>street-paving.jpg</code></td><td>Street with kerbs, cart ruts and stepping stones, Pompeii</td><td>Carole Raddato from FRANKFURT, Germany</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0" rel="license">CC BY-SA 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:The_Streets_of_Pompeii_(14842888779).jpg">Commons</a></td></tr>
+    <tr><td><code>caldarium.jpg</code></td><td>Caldarium of the Forum Baths, Pompeii</td><td>Isaac Harjo of ProWalk Tours; Screen capture and additional editing by Mary Harrsch</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Caldarium_with_Labrum_in_the_Forum_Baths_Pompeii_ProWalk_Tours.jpg">Commons</a></td></tr>
+    <tr><td><code>programmata.jpg</code></td><td>Watercolour record of painted notices, Via dell&rsquo;Abbondanza</td><td>Unknown author</td><td>Public domain</td><td><a href="https://commons.wikimedia.org/wiki/File:Pompei,_iscrizioni_in_Via_dell%27Abbondanza_(dipinto).jpg">Commons</a></td></tr>
+    <tr><td><code>amphitheatre.jpg</code></td><td>Amphitheatre of Pompeii, exterior</td><td>Marco Ober</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Amphitheatre_of_Pompeii,_Exterior,_Sunset.jpg">Commons</a></td></tr>
+    <tr><td><code>eumachia-statue.jpg</code></td><td>Statue of Eumachia in the Building of Eumachia, Pompeii</td><td>Isaac Harjo of ProWalk Tours; Screen capture and additional editing by Mary Harrsch</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Statue_of_priestess_Eumachia_Building_Pompeii_Walk_ProWalk_Tours.jpg">Commons</a></td></tr>
+    <tr><td><code>juliafelix-praedia.jpg</code></td><td>Portico and garden, Praedia of Julia Felix, Pompeii</td><td>Jamie Heath from United Kingdom</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0" rel="license">CC BY-SA 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Praedia_of_Julia_Felix_-_Pompeii_Scavi_(49346753508).jpg">Commons</a></td></tr>
+    <tr><td><code>street-tombs.jpg</code></td><td>Luigi Rossini, <em>Via dei Sepolcri in Pompei</em> (1830)</td><td>Luigi Rossini</td><td>Public domain</td><td><a href="https://commons.wikimedia.org/wiki/File:Via_dei_Sepolcri_in_Pompei,_Luigi_Rossini,_Rome,_1830_(cropped).jpg">Commons</a></td></tr>
+    <tr><td><code>temple-isis.jpg</code></td><td>Temple of Isis, Pompeii</td><td>Mary Harrsch</td><td><a href="https://creativecommons.org/licenses/by-sa/4.0" rel="license">CC BY-SA 4.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Pompeii_Temple_of_Isis_with_clouds.jpg">Commons</a></td></tr>
+    <tr><td><code>anubis-priest.jpg</code></td><td>Fresco of a priest masked as Anubis, Temple of Isis, Pompeii</td><td>Gary Todd from Xinzheng, China</td><td>Public domain</td><td><a href="https://commons.wikimedia.org/wiki/File:Fresco_of_Priest_disguised_as_Anubis,_from_the_Temple_of_Isis,_Pompeii_(48452085592).jpg">Commons</a></td></tr>
+    <tr><td><code>neptune-mosaic.jpg</code></td><td>Neptune and Amphitrite wall mosaic, Herculaneum</td><td>Jebulon</td><td><a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" rel="license">CC0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Neptune_Amphitrite_mosaic_Herculaneum.jpg">Commons</a></td></tr>
+    <tr><td><code>alexander-mosaic.jpg</code></td><td>Exedra of the Alexander Mosaic, House of the Faun, Pompeii</td><td>Maarten Heerlien from Voorschoten, The Netherlands</td><td><a href="https://creativecommons.org/licenses/by/2.0" rel="license">CC BY 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:House_of_the_Faun_(Pompeii)_-_Exedra_of_the_Alexander_mosaic_2015_071_(21192658765).jpg">Commons</a></td></tr>
+    <tr><td><code>victim-cast.jpg</code></td><td>Plaster cast of an eruption victim on display, Pompeii</td><td>daryl_mitchell from Saskatoon, Saskatchewan, Canada</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0" rel="license">CC BY-SA 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Plaster_Cast_Body_(15910425865).jpg">Commons</a></td></tr>
+    <tr><td><code>conservation-work.jpg</code></td><td>Conservation scaffolding, Via dell&rsquo;Abbondanza, Pompeii</td><td>Lord Pheasant at English Wikipedia</td><td>Public domain</td><td><a href="https://commons.wikimedia.org/wiki/File:Pompeii_-_Conservation_Work_on_Via_dell%27Abbondanza.jpg">Commons</a></td></tr>
+    <tr><td><code>tourist-crowds.jpg</code></td><td>Visitors on a street at Pompeii</td><td>daryl_mitchell from Saskatoon, Saskatchewan, Canada</td><td><a href="https://creativecommons.org/licenses/by-sa/2.0" rel="license">CC BY-SA 2.0</a></td><td><a href="https://commons.wikimedia.org/wiki/File:Tour_Group_(15910408615).jpg">Commons</a></td></tr>
+  </table></div>
+  <p style="font-size:.85rem;color:var(--muted)">The text, modelled answers and annotations on this site are the work of the teacher who built it, for classroom use.</p>
+
+  <h3>Where a free image could not be found</h3>
+  <p>Three things this resource would ideally show have no freely-licensed equivalent, so they are described in words instead of pictured. Say so to students rather than letting the gap pass unnoticed — it is a small lesson in how availability shapes what gets taught.</p>
+  <ul>
+    <li><strong>A cast inside a CT scanner</strong> (the 2015 Pompeii Cast Project). Described in question set 8.</li>
+    <li><strong>Mineralised food remains from the Cardo V sewer</strong> — the pips, fish bones and sea-urchin shell. Described in question set 4; the carbonised loaf in set 3 stands in as physical food evidence.</li>
+    <li><strong>A household lararium fresco</strong> showing the Lares, <em>genius</em> and serpent. The shop shrine in question set 4&rsquo;s Source B shows the same iconography in a commercial setting.</li>
+  </ul>
+
+  <h3>Syllabus</h3>
+  <p>Prepared for NSW Ancient History Stage 6 (Year 12), Core Study: Cities of Vesuvius — Pompeii and Herculaneum. Syllabus wording &copy; NSW Education Standards Authority (NESA). The assessment outcomes most relevant to this site are AH12-6 (analyses and interprets different types of sources for evidence), AH12-7 (discusses and evaluates differing interpretations and representations of the past), AH12-9 (communicates historical understanding) and AH12-10 (ownership, custodianship and conservation). Check the current syllabus, past HSC papers and Notes from the Marking Centre at educationstandards.nsw.edu.au.</p>
+</section>
+
+</main>
+</div>
+
+<footer class="foot">
+  <p>Answering HSC Questions — Core Study: Cities of Vesuvius, Pompeii and Herculaneum. A classroom revision resource for NSW Ancient History Stage 6. Works offline once loaded; no external scripts, fonts or trackers. All images are public domain or Creative Commons — see <a href="#about">Images: licences and credits</a>.</p>
+</footer>
+
+<button id="totop" title="Back to top" aria-label="Back to top">&uarr;</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- Marker's notes toggle ---- */
+  var btnNotes = document.getElementById('btnNotes');
+  btnNotes.addEventListener('click', function(){
+    var off = document.body.classList.toggle('notes-off');
+    btnNotes.setAttribute('aria-pressed', off ? 'false' : 'true');
+    btnNotes.textContent = "Marker’s notes: " + (off ? 'off' : 'on');
+  });
+
+  /* ---- Expand / collapse all reveals ---- */
+  var btnAll = document.getElementById('btnAll');
+  btnAll.addEventListener('click', function(){
+    var all = document.querySelectorAll('details.reveal');
+    var anyClosed = false;
+    all.forEach(function(d){ if(!d.open) anyClosed = true; });
+    all.forEach(function(d){ d.open = anyClosed; });
+    btnAll.textContent = anyClosed ? 'Collapse all' : 'Expand all';
+  });
+
+  /* ---- Force everything open for printing ---- */
+  window.addEventListener('beforeprint', function(){
+    document.querySelectorAll('details').forEach(function(d){
+      if(!d.open){ d.open = true; d.dataset.wasClosed = '1'; }
+    });
+  });
+  window.addEventListener('afterprint', function(){
+    document.querySelectorAll('details[data-was-closed]').forEach(function(d){
+      d.open = false; delete d.dataset.wasClosed;
+    });
+  });
+
+  /* ---- Graceful fallback if an image file is missing ---- */
+  document.querySelectorAll('figure.fig img').forEach(function(img){
+    img.addEventListener('error', function(){
+      var box = document.createElement('div');
+      box.className = 'imgfallback';
+      var b = document.createElement('b');
+      b.textContent = 'Image not found: ' + img.getAttribute('src');
+      box.appendChild(b);
+      var s = document.createElement('span');
+      s.textContent = 'This slot needs: ' + (img.getAttribute('data-need') || img.getAttribute('alt') || '');
+      box.appendChild(s);
+      img.replaceWith(box);
+    });
+  });
+
+  /* ---- Back to top ---- */
+  var top = document.getElementById('totop');
+  top.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+  function vis(){ top.style.display = window.scrollY > 500 ? 'block' : 'none'; }
+  window.addEventListener('scroll', vis); vis();
+})();
+</script>
+</body>
+</html>
