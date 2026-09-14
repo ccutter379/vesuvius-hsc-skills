@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cities of Vesuvius Jeopardy</title>
+<title>Cities of Vesuvius Jeopardy — Version 2</title>
 <style>
   /* ---------- Colours: dark background, white text, Pompeian red accent ---------- */
   :root {
@@ -197,8 +197,9 @@
    value carries the Daily Double.
    ===================================================================== */
 const GAME = {
-  "title": "Cities of Vesuvius Jeopardy",
+  "title": "Cities of Vesuvius Jeopardy — Version 2",
   "subtitle": "HSC Ancient History — Core Study: Pompeii and Herculaneum",
+  "version": "v2",
   "dailyDouble": {
     "category": 4,
     "value": 400
@@ -209,43 +210,43 @@ const GAME = {
       "clues": [
         {
           "value": 100,
-          "clue": "Watching from Misenum, about 30 km across the bay, this 17-year-old wrote the only surviving eyewitness account of the eruption, in two letters to the historian Tacitus.",
-          "answer": "Pliny the Younger",
-          "accept": "\"Pliny\" on its own is fine. Do NOT accept \"Pliny the Elder\" — he was the uncle who sailed towards the eruption and died at Stabiae.",
+          "clue": "This mountain on the Bay of Naples erupted in AD 79 and buried Pompeii and Herculaneum. Nobody at the time realised it was a volcano.",
+          "answer": "Mount Vesuvius",
+          "accept": "\"Vesuvius\" is enough.",
           "note": "",
-          "source": "Study Guide, Part A (The eruption of AD 79); Source Cards S01"
+          "source": "Study Guide, Part A (The region); Source Study Guide, Section 1"
         },
         {
           "value": 200,
-          "clue": "Seventeen years before the eruption, this disaster severely damaged both cities. Seneca records that it killed a flock of 600 sheep, and repairs were still unfinished in AD 79.",
-          "answer": "The earthquake of AD 62/63",
-          "accept": "\"The earthquake\" is enough; accept either AD 62 or AD 63 as the year.",
-          "note": "Contested: Tacitus places the quake in AD 62; Seneca's consular dating gives AD 63. Genuinely unresolved — accept either.",
-          "source": "Study Guide, Part A (Warning signs); Source Study Guide, Section 1; Teacher Guide note on S02"
+          "clue": "Aged 17, he watched the eruption from Misenum and later described the cloud \"shaped like an umbrella pine\" in two letters to the historian Tacitus.",
+          "answer": "Pliny the Younger",
+          "accept": "\"Pliny\" on its own is fine. Do NOT accept \"Pliny the Elder\" — the uncle who sailed towards the eruption and died at Stabiae.",
+          "note": "",
+          "source": "Study Guide, Part A (Pliny the Younger's letters); Source Cards S01"
         },
         {
           "value": 300,
-          "clue": "Director of excavations from 1860 to 1875, he gave Pompeii its region–insula–doorway address system and in 1863 devised the technique of casting the victims in plaster.",
+          "clue": "In the first phase of the eruption this light volcanic stone rained down on Pompeii at about 15 cm an hour, piling up nearly 3 metres deep and collapsing roofs.",
+          "answer": "Pumice (lapilli)",
+          "accept": "\"Pumice\" or \"lapilli\". Accept \"pumice and ash\". Do not accept \"lava\" — no lava reached the cities.",
+          "note": "",
+          "source": "Study Guide, Part A (Plinian phase); Source Cards S24"
+        },
+        {
+          "value": 400,
+          "clue": "In the second phase, these superheated clouds of gas and ash raced down the mountain at hundreds of kilometres an hour, striking Herculaneum first and killing everyone still there instantly.",
+          "answer": "Pyroclastic surges (and flows)",
+          "accept": "\"Pyroclastic surges\", \"pyroclastic flows\" or \"pyroclastic surges and flows\". \"Pyroclastic\" on its own is enough for a 400.",
+          "note": "Temperature estimates vary between studies (c. 400–500°C at Herculaneum in the Study Guide; Mastrolorenzo's 500°C figure is a reading of the bones, not a measurement).",
+          "source": "Study Guide, Part A (Pelean phase); Source Study Guide, Section 1"
+        },
+        {
+          "value": 500,
+          "clue": "Which archaeologist? Director from 1860, he divided Pompeii into numbered regions and blocks, opened the site to paying visitors, and in 1863 first poured plaster into the cavities left by the victims' bodies.",
           "answer": "Giuseppe Fiorelli",
           "accept": "\"Fiorelli\" is enough.",
           "note": "",
           "source": "Study Guide, Part A (Early discoveries); Source Study Guide, Section 1"
-        },
-        {
-          "value": 400,
-          "clue": "Which volcanologist? Treating \"grain sizes as the fingerprints of an eruption\", he matched the layered deposits to Pliny's letters and reconstructed two phases and six pyroclastic surges, S1 to S6.",
-          "answer": "Haraldur Sigurdsson",
-          "accept": "\"Sigurdsson\" is enough. Accept \"Sigurdsson and Carey\".",
-          "note": "",
-          "source": "Study Guide, Part A (The two phases); Source Cards S24"
-        },
-        {
-          "value": 500,
-          "clue": "Found in Region V in 2018 and written in a perishable material, this workman's note dated \"XVI K NOV\" — 17 October — is the strongest new evidence against the traditional 24 August date for the eruption.",
-          "answer": "The charcoal graffito (charcoal inscription) from the Casa del Giardino",
-          "accept": "\"The charcoal inscription\" or \"the Region V graffito\" is enough. Bonus praise if they name Massimo Osanna, who announced it.",
-          "note": "Contested: the note does not state its year; its force rests on the argument that charcoal could not have survived a year on a wall under renovation. Bradley keeps 24 August; Cooley and Osanna favour late October. Do not require a verdict on the date.",
-          "source": "Study Guide, Part A (The date debate); Source Study Guide, Sections 1 and 3; Teacher Guide (R39 note)"
         }
       ]
     },
@@ -254,43 +255,43 @@ const GAME = {
       "clues": [
         {
           "value": 100,
-          "clue": "Most Pompeians did not cook at home. They bought hot food and wine at these counter-service bars with sunken storage jars — such as the one owned by Lucius Vetutius Placidus.",
-          "answer": "Thermopolium (plural: thermopolia)",
-          "accept": "Either singular or plural. Require the Latin term — \"snack bar\" or \"fast-food shop\" alone is not enough at this level. Do not accept \"taberna\" (a shop) or \"caupona\" (an inn).",
-          "note": "The figure of 150–160 thermopolia is commonly quoted but does not appear in your three set texts (Teacher Guide, S13 note).",
-          "source": "Study Guide, Part B (Retail and hospitality); Source Cards S13"
+          "clue": "Pompeii's most famous export: a strong-smelling fermented fish sauce. Aulus Umbricius Scaurus advertised his brand in the floor mosaics of his own house.",
+          "answer": "Garum",
+          "accept": "\"Fish sauce\" is enough.",
+          "note": "",
+          "source": "Study Guide, Part B (Trade, industries and occupations); Source Cards S14"
         },
         {
           "value": 200,
-          "clue": "Pompeii's streets doubled as storm drains, so pedestrians crossed on these. Herculaneum had no need of them because it had a proper underground sewer beneath Cardo V.",
-          "answer": "Stepping stones",
-          "accept": "\"Crossing stones\" or \"stepping blocks\" is fine.",
+          "clue": "Most Pompeians did not cook at home. They bought hot food and wine over the counter at these bars, which had large storage jars sunk into the counter top.",
+          "answer": "Thermopolium (plural: thermopolia)",
+          "accept": "Either singular or plural. \"Snack bar\" or \"fast-food bar\" earns half; the Latin term earns full points.",
           "note": "",
-          "source": "Study Guide, Part B (Baths, water supply and sanitation); Visual Cards V06"
+          "source": "Study Guide, Part B (Retail and hospitality); Source Cards S13"
         },
         {
           "value": 300,
-          "clue": "Eighty-one of these were found still in the oven at the Bakery of Modestus; one from Herculaneum is stamped \"made by Celer, slave of Quintus Granius Verus\".",
-          "answer": "Carbonised loaves of bread",
-          "accept": "\"Loaves\" or \"bread\" is enough.",
+          "clue": "The main hall of a Roman house, just inside the front door, with an opening in the roof and a rain-catching pool (the impluvium) in the floor below it.",
+          "answer": "The atrium",
+          "accept": "",
           "note": "",
-          "source": "Study Guide, Part B (Baking; Food and dining)"
+          "source": "Study Guide, Part B (Housing); Study Guide glossary"
         },
         {
           "value": 400,
-          "clue": "Identify the source: mineralised waste excavated beneath Insula Orientalis II at Herculaneum, revealing that ordinary flat-dwellers ate fish, sea urchin, figs and olives — and even imported black pepper.",
-          "answer": "The Cardo V sewer deposit (the Herculaneum sewer)",
-          "accept": "\"The Herculaneum sewer\" or \"the sewer under Cardo V\" is enough.",
-          "note": "Limitation worth mentioning: it is one insula block over about 20 years, and it links waste to buildings, not to named individuals.",
-          "source": "Study Guide, Part B (Food and dining; evidence table)"
+          "clue": "Built about 70 BC and seating around 20,000, Pompeii's is the earliest stone one of these known anywhere — and in AD 59 it was the scene of a riot between Pompeians and visitors from Nuceria.",
+          "answer": "The amphitheatre",
+          "accept": "\"Arena\" is acceptable. Do not accept \"theatre\" — that is the building for plays.",
+          "note": "Seating estimates vary. The riot is known from both Tacitus (Annals 14.17) and a fresco from a Pompeian house — Rome then banned games at Pompeii for ten years.",
+          "source": "Study Guide, Part B (Leisure); Source Cards S04, S15"
         },
         {
           "value": 500,
-          "clue": "Sitting at the Porta Vesuvio, the highest point in Pompeii, this structure received the aqueduct's water and divided it into three mains feeding fourteen water towers and about forty public fountains.",
-          "answer": "The castellum aquae (water distribution building)",
-          "accept": "\"Castellum\" or \"the water distribution tank/tower at the Vesuvian Gate\" is fine.",
-          "note": "Contested: whether the branch came from the Aqua Augusta (Serino aqueduct) is described in the Source Study Guide as possible but unconfirmed — do not require students to name the aqueduct. Fountain counts vary (c. 40 in the Study Guide, 42 in the Source Study Guide).",
-          "source": "Study Guide, Part B (Water); Source Study Guide, Section 2 (Everyday life)"
+          "clue": "Which researcher? From 1986 this University of Sydney archaeologist studied the jumbled bones in Pompeii's bath-house stores and found the victims were a normal cross-section of the population — not just the old, sick, women and children.",
+          "answer": "Estelle Lazer",
+          "accept": "\"Lazer\" is enough. Do NOT accept Sara Bisel — she studied the Herculaneum skeletons.",
+          "note": "",
+          "source": "Study Guide, Part B (Health) and Part C; Source Cards S19"
         }
       ]
     },
@@ -299,43 +300,43 @@ const GAME = {
       "clues": [
         {
           "value": 100,
-          "clue": "About 2,800 of these painted notices survive on Pompeii's street frontages, urging citizens to elect candidates for aedile and duumvir — \"a good man, worthy of public office\".",
+          "clue": "About 2,800 of these painted election notices survive on Pompeii's walls, urging people to vote for candidates as \"a good man, worthy of public office\".",
           "answer": "Electoral programmata",
-          "accept": "\"Programmata\", \"election notices\" or \"election posters\" is fine.",
+          "accept": "\"Programmata\" or \"election notices/posters\" is fine.",
           "note": "",
           "source": "Study Guide, Part B (The programmata); Source Cards S05"
         },
         {
           "value": 200,
-          "clue": "A public priestess, she funded the largest building on the east side of the forum in her own name and her son's; the fullers set up a statue to her inside, and she built Pompeii's largest known tomb.",
-          "answer": "Eumachia",
-          "accept": "",
-          "note": "Contested: the building's function is debated (guild hall? cloth market? multi-purpose porticus?). Do not let a team assert it was \"the fullers' headquarters\" as fact.",
-          "source": "Study Guide, Part B (Women; Role of the forum); Source Study Guide core source bank"
+          "clue": "Former slaves who had been given their freedom. They became citizens, could vote and could grow very rich — but were barred from ever holding public office.",
+          "answer": "Freedmen (liberti)",
+          "accept": "\"Freedmen\", \"freed slaves\" or \"liberti\".",
+          "note": "",
+          "source": "Study Guide, Part B (Freedmen and freedwomen); Source Study Guide, Section 2 (Social structure)"
         },
         {
           "value": 300,
-          "clue": "The two senior annual magistrates of Pompeii, who presided over the council and the courts; every fifth year they were elected as quinquennales to conduct the census and revise the council roll.",
-          "answer": "The duoviri (duumviri iure dicundo)",
-          "accept": "\"Duumviri\", \"duoviri\" or \"duumvirs\". Do NOT accept \"aediles\" (the junior magistrates) or \"decuriones\" (the councillors).",
-          "note": "",
-          "source": "Study Guide, Part B (The machinery of government); Source Study Guide, Section 2 (Local political life)"
+          "clue": "This public priestess paid for the largest building on Pompeii's forum in her own name, and the fullers (cloth-workers) honoured her with a statue inside it.",
+          "answer": "Eumachia",
+          "accept": "",
+          "note": "The building's function is debated (guild hall? cloth market?) — don't let a team assert it was the fullers' headquarters as fact.",
+          "source": "Study Guide, Part B (Women; Role of the forum)"
         },
         {
           "value": 400,
-          "clue": "This freedwoman built a tomb in the Herculaneum Gate necropolis for herself, her freedmen and her husband Gaius Munatius Faustus — an Augustalis honoured with a bisellium. Its reliefs show a ship and a distribution scene.",
-          "answer": "Naevoleia Tyche",
-          "accept": "Spelling \"Nevoleia\" is fine.",
-          "note": "Watch for the common slip: her tomb is at Pompeii, on the road outside the Herculaneum Gate — not in Herculaneum. Mouritsen: freedmen are over-represented in epitaphs, so tombs exaggerate their share of the population.",
-          "source": "Study Guide, Part B (Women; Tombs); Source Study Guide, Section 2 (Social structure)"
+          "clue": "The two junior magistrates elected each year to look after streets, markets, public buildings, weights and measures, and the games — the first rung of a political career.",
+          "answer": "The aediles",
+          "accept": "Do NOT accept \"duoviri/duumviri\" — they were the two senior magistrates.",
+          "note": "",
+          "source": "Study Guide, Part B (The machinery of government); Study Guide glossary"
         },
         {
           "value": 500,
-          "clue": "Explain the significance: the Temple of Isis inscription says a six-year-old, Numerius Popidius Celsinus, rebuilt the temple \"from its foundations\" and was enrolled in the town council. Who really paid, why could he not take the seat himself, and what does this reveal about social mobility?",
-          "answer": "His father, Numerius Popidius Ampliatus, a freedman. Freedmen were barred from magistracies and the ordo, so he bought his freeborn son into the elite through religious benefaction — wealth could purchase status for the next generation (religion as a social ladder).",
-          "accept": "Award full points only for all three parts: the father / freedman status barred him / mobility bought for the next generation. Half points for two of the three.",
-          "note": "A second inscription (CIL X 847) has Ampliatus paying \"at his own expense\" in his own name on a statuette inside the temple — the family was not hiding the money, only keeping his name off the qualification. Cooley notes child co-option was \"not just a tactic\": other boys were councillors young.",
-          "source": "Study Guide, Part B (Freedmen); Source Study Guide, Section 2 (Religion; Social structure); Source Cards S25"
+          "clue": "Which historian? In Houses and Society in Pompeii and Herculaneum (1994) he showed that grand and humble houses were mixed together in every district — demolishing Maiuri's idea of a city in decline taken over by pushy freedmen.",
+          "answer": "Andrew Wallace-Hadrill",
+          "accept": "\"Wallace-Hadrill\" is enough.",
+          "note": "",
+          "source": "Study Guide, Part B (The mobility debate); Source Cards S21"
         }
       ]
     },
@@ -344,43 +345,43 @@ const GAME = {
       "clues": [
         {
           "value": 100,
-          "clue": "Found in nearly every home, shop and bar — usually in the atrium or kitchen — this shrine is where the paterfamilias led daily offerings to the dancing Lares, the genius and the Penates.",
+          "clue": "The shrine found in almost every home, shop and bar, where the family made daily offerings to the household gods.",
           "answer": "Lararium (plural: lararia)",
-          "accept": "\"Household shrine\" is fine.",
+          "accept": "\"Household shrine\" is enough.",
           "note": "",
           "source": "Study Guide, Part B (Household religion); Source Cards S27"
         },
         {
           "value": 200,
-          "clue": "Popular with women, freedmen and slaves, this Egyptian goddess's temple behind the Large Theatre was the first public building fully rebuilt after the earthquake, and was found in 1764 with its cult apparatus in place.",
-          "answer": "Isis (the Temple of Isis)",
-          "accept": "",
+          "clue": "The Egyptian goddess whose temple, behind Pompeii's Large Theatre, was the first public building fully rebuilt after the earthquake.",
+          "answer": "Isis",
+          "accept": "\"The Temple of Isis\".",
           "note": "",
-          "source": "Study Guide, Part B (Foreign cults); Source Study Guide, Section 2 (Religion)"
+          "source": "Study Guide, Part B (Foreign cults); Source Cards S25"
         },
         {
           "value": 300,
-          "clue": "Because death was believed to pollute, these were built only outside the city walls, lining the roads from the Herculaneum and Nucerian Gates — where epitaphs turned the roadside into a permanent parade of status.",
-          "answer": "Tombs (the necropoleis / \"streets of tombs\")",
-          "accept": "\"Necropolis\", \"cemeteries\", \"tombs\" or \"graves\" all acceptable.",
-          "note": "Follow-up if you want more: cremation was standard; ashes in urns were marked by columellae (head-shaped stones), some with libation tubes. About 250 tombs and burials have been recorded.",
-          "source": "Study Guide, Part B (Tombs and funerary customs); Source Study Guide, Section 2 (Religion)"
+          "clue": "The king of the Roman gods. His temple at the north end of Pompeii's forum, which he shared with Juno and Minerva, was still earthquake-damaged when Vesuvius erupted.",
+          "answer": "Jupiter (the Temple of Jupiter / Capitolium)",
+          "accept": "\"Jupiter\" is enough; also accept \"the Capitolium\" or \"Temple of the Capitoline Triad\".",
+          "note": "",
+          "source": "Study Guide, Part B (Temples and state religion)"
         },
         {
           "value": 400,
-          "clue": "Identify the source: a near-lifesize Second-Style frieze of some 29 figures in a suburban villa outside the Herculaneum Gate, usually read as a woman's initiation into a Dionysiac cult — though rival readings say drama, a myth cycle or pure decoration.",
-          "answer": "The Villa of the Mysteries frieze",
-          "accept": "\"Villa of the Mysteries\" or \"the Dionysiac frieze\" is enough.",
-          "note": "Contested: the interpretation is genuinely disputed (initiation? bridal preparation? theatrical scenes?). A team that names it AND flags the debate has answered at HSC standard.",
+          "clue": "The near-lifesize painted frieze in the Villa of the Mysteries is usually read as a woman's initiation into the secret rites of this god of wine.",
+          "answer": "Dionysus (Bacchus)",
+          "accept": "Either name.",
+          "note": "The reading is contested — some see a bridal preparation, a myth cycle or theatrical scenes rather than an initiation.",
           "source": "Study Guide, Part B (Dionysus/Bacchus); Source Cards S26"
         },
         {
           "value": 500,
-          "clue": "Barred from magistracies, wealthy freedmen climbed instead through this college of priests of the imperial cult. Its hall at Herculaneum carries Hercules frescoes, and Gaius Munatius Faustus was a member.",
-          "answer": "The Augustales",
-          "accept": "\"Augustalis\", \"the college of the Augustales\" or \"priests of the imperial cult (Augustales)\".",
-          "note": "The identification of the Herculaneum building as the Augustales' seat is probable, not certain.",
-          "source": "Study Guide, Part B (Freedmen; Imperial cult; evidence table); Study Guide glossary"
+          "clue": "Explain the significance: why do Pompeii's tombs line the roads OUTSIDE the city gates rather than sitting in a cemetery inside the walls — and name one person who built a famous tomb there.",
+          "answer": "Burial inside the walls was forbidden because death was believed to pollute; tombs were built along the roads leading from the gates so that passers-by would read them — turning the roadside into a parade of status. Examples: Eumachia (largest tomb, Nucerian Gate), Naevoleia Tyche (Herculaneum Gate road), the priestess Mamia (schola tomb), Gaius Vestorius Priscus.",
+          "accept": "Full points for the reason (forbidden inside the walls / death polluted) PLUS one correct name. Half points for either part alone.",
+          "note": "",
+          "source": "Study Guide, Part B (Tombs and funerary customs); Source Study Guide, Section 2 (Religion)"
         }
       ]
     },
@@ -389,43 +390,43 @@ const GAME = {
       "clues": [
         {
           "value": 100,
-          "clue": "From 1863, Fiorelli filled the body-shaped cavities in Pompeii's hardened ash to capture the victims' final postures, clothing folds and even facial features. About 100 were made from roughly 1,150 victims.",
-          "answer": "The plaster casts (body casts)",
-          "accept": "\"Casts\" is enough.",
-          "note": "For discussion: the void is ancient; the plaster object is a 19th-century creation. Is a cast archaeological evidence, an interpretation, or a museum artefact? (Teacher Guide, S08.)",
-          "source": "Source Study Guide, core source bank; Source Cards S08; Study Guide, Part A"
+          "clue": "Made from 1863 by filling the body-shaped cavities in Pompeii's hardened ash, these lifelike figures show the victims' final postures and even the folds of their clothing.",
+          "answer": "The plaster casts",
+          "accept": "\"Casts\" or \"body casts\" is enough.",
+          "note": "Good follow-up question for the class: is a cast ancient evidence or a 19th-century object? (Both — the void is ancient, the plaster is Fiorelli's.)",
+          "source": "Source Cards S08; Study Guide, Part A"
         },
         {
           "value": 200,
-          "clue": "Herculaneum's deep, airless burial under pyroclastic material preserved organic matter by this process — giving us wooden doors, beds, food and around 1,800 papyrus scrolls that Pompeii lost.",
+          "clue": "Because Herculaneum was buried deep and hot with no oxygen, wooden doors, beds, food and about 1,800 papyrus scrolls survived by this process — a kind of charring.",
           "answer": "Carbonisation",
-          "accept": "\"Carbonised\" or \"charring without oxygen\" is fine.",
+          "accept": "\"Carbonised\" is fine.",
           "note": "",
-          "source": "Study Guide glossary; Study Guide (Different burials, different evidence); Source Cards S09"
+          "source": "Study Guide glossary; Source Cards S09"
         },
         {
           "value": 300,
-          "clue": "Which scholar? In 1882 he classified Pompeian wall painting into four styles — from the First (masonry/incrustation) to the Fourth (composite/intricate) — a framework still used to date rooms and renovations.",
-          "answer": "August Mau",
-          "accept": "\"Mau\" is enough.",
-          "note": "Limitation: the styles overlap and were deliberately revived, so they are not a precise dating instrument.",
-          "source": "Study Guide, Part A (19th century) and evidence table; Source Study Guide, Section 2"
+          "clue": "Paintings made directly on wall plaster. The scholar August Mau sorted Pompeii's into four styles, and they show everything from myths and banquets to shop signs.",
+          "answer": "Frescoes (wall paintings)",
+          "accept": "\"Wall paintings\" or \"frescoes\".",
+          "note": "",
+          "source": "Study Guide, Part B (umbrella source table); Source Study Guide, Section 2"
         },
         {
           "value": 400,
-          "clue": "Identify the source: about 153 wax tablets found in a banker's house at V.1.26 — mostly auction receipts from AD 52 to 62, with witness lists apparently ordered by social rank.",
-          "answer": "The wax tablets of Lucius Caecilius Iucundus",
-          "accept": "\"Caecilius Iucundus's tablets\" or \"the Iucundus archive\". Do NOT accept the Sulpicii/Murecine tablets (found outside Pompeii, recording business at Puteoli) or the Herculaneum tablets (Petronia Justa, Venidius Ennychus).",
-          "note": "Limitation: the archive stops in January AD 62 and records auctions only — not the whole economy. Sixteen tablets record dealings with the town itself (fullery tax, farm lease, market tax).",
-          "source": "Study Guide, Part B (Finance); Source Study Guide, core source bank; Source Cards S06, S07"
+          "clue": "The famous floor artwork from the House of the Faun, made of about one and a half million tiny stone tiles, showing a Macedonian king on horseback charging at the Persian king Darius.",
+          "answer": "The Alexander Mosaic",
+          "accept": "\"The mosaic of Alexander and Darius\" or \"the Battle of Issus mosaic\".",
+          "note": "Which battle it shows is contested (Issus or Gaugamela). The original is in the Naples museum; a replica has been in the house since 2005.",
+          "source": "Study Guide, Part B (Greek influence); Source Study Guide, Section 2; Source Cards S11"
         },
         {
           "value": 500,
-          "clue": "Explain the significance: HSC marker feedback has praised candidates who distinguish the work of Sara Bisel from that of Estelle Lazer. What did each study, and what did each conclude?",
-          "answer": "Bisel — the boat-chamber skeletons at Herculaneum (1980s): osteological and chemical analysis of 139 skeletons showing good nutrition, high seafood intake and markers of hard labour. Lazer — the disarticulated bones from Pompeii's bone stores (from 1986): the victims were a normal cross-section of ages and sexes, not just the old, sick, women and children; she later CT-scanned the casts (2015).",
-          "accept": "Full points for the correct city, the material studied and one finding for EACH woman. Half points if they get the cities right but only one finding.",
-          "note": "Bisel's lead-poisoning suggestions are now treated with caution, and her sample was small by later standards.",
-          "source": "Study Guide (What markers reward; Health); Source Cards S19, S20; Teacher Guide notes"
+          "clue": "Which scientist? In the 1980s this physical anthropologist examined 139 skeletons from Herculaneum's beachfront boat chambers, using bone chemistry to show a diet rich in seafood.",
+          "answer": "Sara Bisel",
+          "accept": "\"Bisel\" is enough. Do NOT accept Estelle Lazer — she worked on the Pompeii bones.",
+          "note": "Her lead-poisoning suggestions are now treated with caution.",
+          "source": "Study Guide, Part B (Health); Source Cards S20"
         }
       ]
     },
@@ -434,54 +435,54 @@ const GAME = {
       "clues": [
         {
           "value": 100,
-          "clue": "On 6 November 2010, after torrential rain, this building on the Via dell'Abbondanza collapsed, making world headlines (\"Italy's Shame\") and triggering the €105 million Great Pompeii Project.",
-          "answer": "The Schola Armaturarum (the \"House of the Gladiators\")",
-          "accept": "Either the Latin or the English name.",
-          "note": "It reopened on 3 January 2019 after a three-year restoration. Its collapse was multi-factorial: rain, old bomb damage from 1943, a concrete roof, blocked drainage.",
-          "source": "Study Guide, Part C (Neglect and mismanagement); Source Study Guide, Section 3; Source Cards S28"
-        },
-        {
-          "value": 200,
-          "clue": "Which director? In charge from 1924 to 1961 and funded by Mussolini's regime, he excavated the Villa of the Mysteries and opened Herculaneum on a grand scale — but left thin records, used damaging reinforced concrete and staged finds for visitors.",
-          "answer": "Amedeo Maiuri",
-          "accept": "\"Maiuri\" is enough.",
-          "note": "Also the author of the \"crisis theory\" of post-earthquake decline, challenged by Wallace-Hadrill, Dobbins, Ling and Cooley.",
-          "source": "Study Guide, Part A (20th century) and Part C; Source Study Guide, Section 3; Source Cards S31, S33"
-        },
-        {
-          "value": 300,
-          "clue": "Begun in 2001, this partnership between the philanthropist David Packard, the Italian authorities and the British School at Rome repaired roofs and revived the ancient sewers as working drains; UNESCO calls it a model public–private partnership for cultural heritage.",
-          "answer": "The Herculaneum Conservation Project (HCP)",
-          "accept": "\"HCP\" or \"the Packard project at Herculaneum\".",
-          "note": "Led by Andrew Wallace-Hadrill; Packard committed US$10 million a year for ten years. Limitation: it depends on one donor's continuity, and Herculaneum's small size makes the model hard to scale up to Pompeii.",
+          "clue": "After the \"House of the Gladiators\" collapsed in the rain in 2010, the EU and Italy launched this €105 million rescue programme to stabilise and restore the site.",
+          "answer": "The Great Pompeii Project",
+          "accept": "",
+          "note": "",
           "source": "Study Guide, Part C (The responses); Source Study Guide, Section 3"
         },
         {
+          "value": 200,
+          "clue": "Which director? In charge from 1924 to 1961 and backed by Mussolini, he dug at record speed and left Herculaneum's houses furnished like a showpiece for tourists — but with thin records and damaging concrete repairs.",
+          "answer": "Amedeo Maiuri",
+          "accept": "\"Maiuri\" is enough.",
+          "note": "",
+          "source": "Study Guide, Part A (20th century) and Part C; Source Cards S31, S33"
+        },
+        {
+          "value": 300,
+          "clue": "The international body that placed Pompeii, Herculaneum and Oplontis on its World Heritage List in 1997 and sends experts to check on their condition.",
+          "answer": "UNESCO",
+          "accept": "",
+          "note": "UNESCO can warn and embarrass, but cannot fund or compel.",
+          "source": "Study Guide, Part C (Governance); Source Study Guide, Section 3"
+        },
+        {
           "value": 400,
-          "clue": "Declared in 1999 by superintendent Pietro Giovanni Guzzo, this decision left roughly a third of Pompeii unexcavated as a \"bank for the future\" — on the principle that excavation is destruction.",
-          "answer": "The moratorium on new excavation",
-          "accept": "\"A ban/halt on new excavation\" or \"the 1999 moratorium\".",
-          "note": "The Region V digs from 2018 were justified as conservation of the excavation front, not as new excavation — evidence of how loaded the word has become.",
+          "clue": "About a third of Pompeii is still buried, and it is being left that way on purpose. Explain why archaeologists now choose NOT to dig it up.",
+          "answer": "Because excavation is destruction: a deposit can only be dug once, and everything uncovered immediately starts to decay (the \"second death\") and must then be conserved forever. The unexcavated part is kept as a bank for the future, when methods will be better. (Superintendent Guzzo declared a moratorium on new digging in 1999.)",
+          "accept": "Full points for the core idea — exposure causes decay / excavation destroys / saving it for better methods. Bonus praise for \"moratorium\" or Guzzo.",
+          "note": "",
           "source": "Study Guide, Part A (After 1961) and Part C (To dig or not to dig?)"
         },
         {
           "value": 500,
-          "clue": "Explain the significance: in 2015 the Pompeii Cast Project used a 16-slice CT scanner on 86 casts. What did the scans reveal inside the casts, and why is this project the standard example of an ethically improved method?",
-          "answer": "They revealed real bones with surprisingly good teeth (low-sugar, high-fibre diet), ages and injuries — but also metal rods, incomplete skeletons and heavy 19th-century re-sculpting, so the casts are part-Roman, part-Victorian artefact. It is ethically improved because CT scanning is non-invasive: it recovers data without damaging the remains, unlike casting or physical examination.",
-          "accept": "Full points for one finding (either the health data or the modern restoration material) PLUS the non-invasive point. Half points for only one of the two.",
-          "note": "This post-dates Bradley's 3rd edition (2018), which describes only X-raying of casts. The sample is casts made since 1863, not all victims.",
-          "source": "Study Guide, Part C (Human remains: from props to patients; Ethics); Source Cards S32; Teacher Guide notes"
+          "clue": "Explain the significance: the Garden of the Fugitives displays plaster casts of a fleeing group behind glass, exactly where they died. Give ONE argument FOR displaying human remains this way and ONE argument AGAINST.",
+          "answer": "FOR: showing them where they died keeps their context and arguably dignifies them; it creates empathy and educates millions; it builds the public support that funds conservation. AGAINST: the dead cannot consent; the casts contain real bones, so this is displaying human remains as a spectacle (\"dark tourism\"); it profits from the dead; and there is no descendant community to speak for them, so custodians must act as their advocates.",
+          "accept": "Full points for one clear argument each way. Praise a team that mentions the ICOM Code of Ethics or that the casts contain real bones.",
+          "note": "The often-quoted figure of 13 casts in the Garden of the Fugitives does not appear in your three set texts (Teacher Guide, S08) — so the clue avoids a number.",
+          "source": "Study Guide, Part C (The dead on display; evidence table); Source Study Guide, Section 3 (Ethical issues)"
         }
       ]
     }
   ],
   "final": {
-    "category": "Tourism — value and impact",
-    "clue": "\"Pompeii is preserved and destroyed by the same four million people each year.\" Do you agree? Support your judgement with ONE specific problem tourism causes, ONE specific management solution introduced at the sites, and a verdict on whether the tension can ever be resolved.",
-    "answer": "A judgement supported by named evidence. VALUE: roughly €20 million a year in ticket sales; a record 4 million-plus visitors in 2024; tourism builds the public and political will that funds conservation — global coverage of the 2010 collapse produced the €105 million Great Pompeii Project. PROBLEMS (any one): wear on the honeypot routes such as the Via dell'Abbondanza; theft and vandalism (c. 600 objects 1975–2000); cruise-ship crowding; revenue historically spent on facilities rather than preservation (five qualified maintenance staff in 2010). SOLUTIONS (any one): the November 2024 daily cap of 20,000 with personalised tickets (Zuchtriegel: \"reduce human pressure on the site\"); rotating which houses are open; dispersal to Herculaneum, Oplontis and Boscoreale; virtual tours and 3D models; the Herculaneum model of funding conservation independently of ticket revenue. VERDICT: the tension is manageable but permanent — there is no solved state, only balance.",
-    "accept": "Score as an HSC extended response in miniature: 1 = a bare judgement; 2 = judgement plus a problem OR a solution; 3 = judgement plus a named problem AND a named solution; 4 = all of that plus a reasoned verdict that weighs value against damage.",
-    "note": "Contested: June 2025 reports (guides' association president Paolo Mazzarella) suggest the cap has not solved congestion and may have made queues worse — but guides lose income to queues, so this is interested evidence. A team that raises this is working at the top band.",
-    "source": "Study Guide, Part C (Value and impact of tourism); Source Study Guide, Section 3 (Tourism)"
+    "category": "Pompeii versus Herculaneum",
+    "clue": "The eruption \"did not simply destroy two towns — it created two different archives.\" Explain ONE way the two cities were buried differently, and give ONE type of evidence each city preserved that the other lost.",
+    "answer": "BURIAL: Pompeii, downwind, was buried under about 4–6 metres of loose pumice and ash over roughly 18 hours (most people fled; roofs collapsed; the city was shallow enough for later salvagers to tunnel in). Herculaneum, upwind, got only a dusting of ash, then was hit by the first pyroclastic surges at about 1 am and sealed under some 20–23 metres of hot material that hardened to rock. EVIDENCE: Pompeii preserved body cavities (so plaster casts), streetscapes, election notices and frescoes, but its organic material rotted away. Herculaneum's hot, airless burial carbonised wood, doors, furniture, food, a boat and about 1,800 papyrus scrolls — and it kept real skeletons (the c. 300 in the boat chambers) — but there were no cavities, so no casts.",
+    "accept": "Score like a mini extended response: 1 = one correct difference; 2 = burial difference plus one evidence type; 3 = burial difference plus one evidence type for EACH city; 4 = all of that plus a reason (depth, heat, wind direction or timing) explaining why.",
+    "note": "Bradley notes recent research finds the two fates more similar than once thought — both towns were ultimately destroyed by surges — so present the contrast as one of degree and sequence, not of kind.",
+    "source": "Study Guide (Pompeii vs Herculaneum — different burials, different evidence); Source Study Guide, Section 1 (comparison table)"
   }
 };
 
