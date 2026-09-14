@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cities of Vesuvius Jeopardy</title>
+<style>
+  /* ---------- Colours: dark background, white text, Pompeian red accent ---------- */
+  :root {
+    --bg: #14100F;
+    --panel: #221A18;
+    --tile: #2E2320;
+    --tile-hover: #3D2D28;
+    --tile-done: #1B1614;
+    --text: #FFFFFF;
+    --muted: #B8A9A2;
+    --accent: #B0322B;      /* Pompeian red */
+    --accent-light: #D9534A;
+    --gold: #E8B44C;
+    --border: #4A3733;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: flex; flex-direction: column;
+    min-height: 100vh;
+    padding-inline: 16px;
+    padding-block: 12px;
+  }
+  button { font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-bottom: 10px;
+  }
+  header h1 { margin: 0; font-size: clamp(1.4rem, 2.6vw, 2.2rem); letter-spacing: 0.02em; }
+  header h1 small { display: block; font-size: 0.5em; color: var(--muted); font-weight: normal; letter-spacing: 0.08em; text-transform: uppercase; }
+  .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    background: var(--panel); color: var(--text); border: 2px solid var(--border);
+    padding: 8px 14px; border-radius: 6px; font-size: 0.95rem;
+  }
+  .btn:hover { border-color: var(--accent-light); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent-light); }
+  .btn.gold { background: var(--gold); color: #1a1208; border-color: var(--gold); font-weight: bold; }
+
+  /* ---------- Board ---------- */
+  #board {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(0, 1fr);
+    gap: 8px;
+    min-height: 0;
+  }
+  .cat {
+    background: var(--accent); color: #fff; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    font-weight: bold; font-size: clamp(0.8rem, 1.5vw, 1.25rem); line-height: 1.2;
+    padding: 6px 8px; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .tile {
+    background: var(--tile); color: var(--gold); border: 2px solid var(--border); border-radius: 8px;
+    font-size: clamp(1.4rem, 4vw, 3.2rem); font-weight: bold;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .tile:hover { background: var(--tile-hover); transform: scale(1.02); }
+  .tile.done { background: var(--tile-done); color: #4a3d39; border-color: #2a201d; cursor: default; transform: none; }
+
+  /* ---------- Scoreboard ---------- */
+  #scores {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px;
+    margin-top: 10px; padding-top: 10px; border-top: 2px solid var(--border);
+  }
+  .team {
+    background: var(--panel); border: 2px solid var(--border); border-radius: 8px; padding: 8px 10px;
+    display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 4px 8px; align-items: center;
+  }
+  .team input.name {
+    background: transparent; border: none; border-bottom: 1px dashed var(--border); color: var(--text);
+    font: inherit; font-weight: bold; width: 100%; padding: 2px 0;
+  }
+  .team input.name:focus { outline: none; border-bottom-color: var(--gold); }
+  .team .score { font-size: 1.6rem; font-weight: bold; color: var(--gold); text-align: right; grid-row: span 2; }
+  .team .adj { display: flex; gap: 6px; }
+  .team .adj button {
+    background: var(--tile); color: var(--text); border: 1px solid var(--border); border-radius: 5px;
+    width: 40px; height: 32px; font-size: 1.1rem; font-weight: bold;
+  }
+  .team .adj button.plus:hover { background: #2f6b3a; }
+  .team .adj button.minus:hover { background: #7a2a2a; }
+
+  /* ---------- Clue overlay ---------- */
+  #overlay {
+    position: fixed; inset: 0; background: var(--bg); z-index: 10;
+    display: flex; flex-direction: column; padding: 16px 4vw; overflow-y: auto;
+  }
+  #overlay[hidden] { display: none; }
+  .ov-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .ov-cat { color: var(--accent-light); font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; font-size: clamp(1rem, 2vw, 1.4rem); }
+  .ov-value { color: var(--gold); font-weight: bold; font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
+  .ov-body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 20px; }
+  .ov-clue { line-height: 1.3; max-width: 1400px; }
+  .ov-clue.short  { font-size: clamp(1.6rem, 3.8vw, 3.6rem); }
+  .ov-clue.medium { font-size: clamp(1.4rem, 3vw, 2.8rem); }
+  .ov-clue.long   { font-size: clamp(1.2rem, 2.4vw, 2.2rem); }
+  .ov-answer { line-height: 1.3; max-width: 1300px; color: var(--gold); border-top: 2px solid var(--accent); padding-top: 16px; }
+  .ov-answer.short  { font-size: clamp(1.3rem, 3vw, 2.8rem); }
+  .ov-answer.medium { font-size: clamp(1.1rem, 2.2vw, 2rem); }
+  .ov-answer.long   { font-size: clamp(1rem, 1.7vw, 1.5rem); text-align: left; }
+  .ov-answer[hidden] { display: none; }
+  .ov-bottom { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; padding-top: 12px; }
+  .ov-bottom .btn { font-size: 1.1rem; padding: 12px 22px; }
+  .ov-scores { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+  .ov-scores .team { min-width: 170px; }
+  .ov-hint { color: var(--muted); font-size: 0.9rem; text-align: center; margin-top: 6px; }
+
+  /* Daily Double splash */
+  .dd-splash {
+    font-size: clamp(2.5rem, 8vw, 7rem); font-weight: 900; color: var(--gold); letter-spacing: 0.05em;
+    text-transform: uppercase; text-shadow: 0 0 30px rgba(232,180,76,0.5);
+    animation: pulse 1s ease-in-out infinite alternate;
+  }
+  .dd-badge {
+    display: inline-block; background: var(--gold); color: #1a1208; font-weight: bold; padding: 4px 12px;
+    border-radius: 999px; font-size: 0.9rem; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+  /* Final Jeopardy wager rows */
+  .final-teams { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; width: 100%; max-width: 1200px; }
+  .final-team { background: var(--panel); border: 2px solid var(--border); border-radius: 8px; padding: 10px; text-align: left; }
+  .final-team .nm { font-weight: bold; }
+  .final-team .sc { color: var(--gold); font-weight: bold; float: right; }
+  .final-team label { display: block; color: var(--muted); font-size: 0.85rem; margin-top: 6px; }
+  .final-team input.wager { width: 100%; font: inherit; font-size: 1.1rem; padding: 6px; border-radius: 5px; border: 1px solid var(--border); background: var(--tile); color: var(--text); }
+  .final-team .fbtns { display: flex; gap: 6px; margin-top: 8px; }
+  .final-team .fbtns button { flex: 1; padding: 8px; border-radius: 5px; border: none; font-weight: bold; }
+  .final-team .fbtns .ok { background: #2f6b3a; color: #fff; }
+  .final-team .fbtns .no { background: #7a2a2a; color: #fff; }
+  .final-team .fbtns button:disabled { opacity: 0.4; cursor: default; }
+
+  @media (max-width: 700px) {
+    #board { gap: 4px; }
+    .cat { font-size: 0.6rem; padding: 4px; }
+    .tile { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Cities of Vesuvius Jeopardy<small>HSC Ancient History — Core Study: Pompeii and Herculaneum</small></h1>
+  <div class="controls">
+    <button class="btn" id="teamsBtn" title="Change the number of teams">Teams: <span id="teamCount">3</span></button>
+    <button class="btn gold" id="finalBtn" title="Open the Final Jeopardy clue">Final Jeopardy</button>
+    <button class="btn" id="resetBtn" title="Clear the board and all scores">Reset game</button>
+  </div>
+</header>
+
+<main id="board" aria-label="Game board"></main>
+
+<section id="scores" aria-label="Scoreboard"></section>
+
+<!-- Clue overlay -->
+<div id="overlay" hidden>
+  <div class="ov-top">
+    <div class="ov-cat" id="ovCat"></div>
+    <div><span class="dd-badge" id="ovDD" hidden>Daily Double</span> <span class="ov-value" id="ovValue"></span></div>
+  </div>
+  <div class="ov-body" id="ovBody">
+    <div class="dd-splash" id="ddSplash" hidden>Daily Double!</div>
+    <div class="ov-clue" id="ovClue"></div>
+    <div class="ov-answer" id="ovAnswer" hidden></div>
+    <div class="final-teams" id="finalTeams" hidden></div>
+  </div>
+  <div class="ov-bottom" id="ovButtons"></div>
+  <div class="ov-scores" id="ovScores"></div>
+  <div class="ov-hint" id="ovHint"></div>
+</div>
+
+<script>
+/* =====================================================================
+   CLUES — EDIT HERE
+   ---------------------------------------------------------------------
+   Each category has five clues worth 100–500. To change a clue, edit the
+   text between the quotation marks. Keep the commas and brackets as they
+   are. "dailyDouble" says which category (0 = first, 5 = last) and which
+   value carries the Daily Double.
+   ===================================================================== */
+const GAME = {
+  "title": "Cities of Vesuvius Jeopardy",
+  "subtitle": "HSC Ancient History — Core Study: Pompeii and Herculaneum",
+  "dailyDouble": {
+    "category": 4,
+    "value": 400
+  },
+  "categories": [
+    {
+      "name": "Geography, Eruption and Discovery",
+      "clues": [
+        {
+          "value": 100,
+          "clue": "Watching from Misenum, about 30 km across the bay, this 17-year-old wrote the only surviving eyewitness account of the eruption, in two letters to the historian Tacitus.",
+          "answer": "Pliny the Younger",
+          "accept": "\"Pliny\" on its own is fine. Do NOT accept \"Pliny the Elder\" — he was the uncle who sailed towards the eruption and died at Stabiae.",
+          "note": "",
+          "source": "Study Guide, Part A (The eruption of AD 79); Source Cards S01"
+        },
+        {
+          "value": 200,
+          "clue": "Seventeen years before the eruption, this disaster severely damaged both cities. Seneca records that it killed a flock of 600 sheep, and repairs were still unfinished in AD 79.",
+          "answer": "The earthquake of AD 62/63",
+          "accept": "\"The earthquake\" is enough; accept either AD 62 or AD 63 as the year.",
+          "note": "Contested: Tacitus places the quake in AD 62; Seneca's consular dating gives AD 63. Genuinely unresolved — accept either.",
+          "source": "Study Guide, Part A (Warning signs); Source Study Guide, Section 1; Teacher Guide note on S02"
+        },
+        {
+          "value": 300,
+          "clue": "Director of excavations from 1860 to 1875, he gave Pompeii its region–insula–doorway address system and in 1863 devised the technique of casting the victims in plaster.",
+          "answer": "Giuseppe Fiorelli",
+          "accept": "\"Fiorelli\" is enough.",
+          "note": "",
+          "source": "Study Guide, Part A (Early discoveries); Source Study Guide, Section 1"
+        },
+        {
+          "value": 400,
+          "clue": "Which volcanologist? Treating \"grain sizes as the fingerprints of an eruption\", he matched the layered deposits to Pliny's letters and reconstructed two phases and six pyroclastic surges, S1 to S6.",
+          "answer": "Haraldur Sigurdsson",
+          "accept": "\"Sigurdsson\" is enough. Accept \"Sigurdsson and Carey\".",
+          "note": "",
+          "source": "Study Guide, Part A (The two phases); Source Cards S24"
+        },
+        {
+          "value": 500,
+          "clue": "Found in Region V in 2018 and written in a perishable material, this workman's note dated \"XVI K NOV\" — 17 October — is the strongest new evidence against the traditional 24 August date for the eruption.",
+          "answer": "The charcoal graffito (charcoal inscription) from the Casa del Giardino",
+          "accept": "\"The charcoal inscription\" or \"the Region V graffito\" is enough. Bonus praise if they name Massimo Osanna, who announced it.",
+          "note": "Contested: the note does not state its year; its force rests on the argument that charcoal could not have survived a year on a wall under renovation. Bradley keeps 24 August; Cooley and Osanna favour late October. Do not require a verdict on the date.",
+          "source": "Study Guide, Part A (The date debate); Source Study Guide, Sections 1 and 3; Teacher Guide (R39 note)"
+        }
+      ]
+    },
+    {
+      "name": "Everyday Life",
+      "clues": [
+        {
+          "value": 100,
+          "clue": "Most Pompeians did not cook at home. They bought hot food and wine at these counter-service bars with sunken storage jars — such as the one owned by Lucius Vetutius Placidus.",
+          "answer": "Thermopolium (plural: thermopolia)",
+          "accept": "Either singular or plural. Require the Latin term — \"snack bar\" or \"fast-food shop\" alone is not enough at this level. Do not accept \"taberna\" (a shop) or \"caupona\" (an inn).",
+          "note": "The figure of 150–160 thermopolia is commonly quoted but does not appear in your three set texts (Teacher Guide, S13 note).",
+          "source": "Study Guide, Part B (Retail and hospitality); Source Cards S13"
+        },
+        {
+          "value": 200,
+          "clue": "Pompeii's streets doubled as storm drains, so pedestrians crossed on these. Herculaneum had no need of them because it had a proper underground sewer beneath Cardo V.",
+          "answer": "Stepping stones",
+          "accept": "\"Crossing stones\" or \"stepping blocks\" is fine.",
+          "note": "",
+          "source": "Study Guide, Part B (Baths, water supply and sanitation); Visual Cards V06"
+        },
+        {
+          "value": 300,
+          "clue": "Eighty-one of these were found still in the oven at the Bakery of Modestus; one from Herculaneum is stamped \"made by Celer, slave of Quintus Granius Verus\".",
+          "answer": "Carbonised loaves of bread",
+          "accept": "\"Loaves\" or \"bread\" is enough.",
+          "note": "",
+          "source": "Study Guide, Part B (Baking; Food and dining)"
+        },
+        {
+          "value": 400,
+          "clue": "Identify the source: mineralised waste excavated beneath Insula Orientalis II at Herculaneum, revealing that ordinary flat-dwellers ate fish, sea urchin, figs and olives — and even imported black pepper.",
+          "answer": "The Cardo V sewer deposit (the Herculaneum sewer)",
+          "accept": "\"The Herculaneum sewer\" or \"the sewer under Cardo V\" is enough.",
+          "note": "Limitation worth mentioning: it is one insula block over about 20 years, and it links waste to buildings, not to named individuals.",
+          "source": "Study Guide, Part B (Food and dining; evidence table)"
+        },
+        {
+          "value": 500,
+          "clue": "Sitting at the Porta Vesuvio, the highest point in Pompeii, this structure received the aqueduct's water and divided it into three mains feeding fourteen water towers and about forty public fountains.",
+          "answer": "The castellum aquae (water distribution building)",
+          "accept": "\"Castellum\" or \"the water distribution tank/tower at the Vesuvian Gate\" is fine.",
+          "note": "Contested: whether the branch came from the Aqua Augusta (Serino aqueduct) is described in the Source Study Guide as possible but unconfirmed — do not require students to name the aqueduct. Fountain counts vary (c. 40 in the Study Guide, 42 in the Source Study Guide).",
+          "source": "Study Guide, Part B (Water); Source Study Guide, Section 2 (Everyday life)"
+        }
+      ]
+    },
+    {
+      "name": "Social and Political Structure",
+      "clues": [
+        {
+          "value": 100,
+          "clue": "About 2,800 of these painted notices survive on Pompeii's street frontages, urging citizens to elect candidates for aedile and duumvir — \"a good man, worthy of public office\".",
+          "answer": "Electoral programmata",
+          "accept": "\"Programmata\", \"election notices\" or \"election posters\" is fine.",
+          "note": "",
+          "source": "Study Guide, Part B (The programmata); Source Cards S05"
+        },
+        {
+          "value": 200,
+          "clue": "A public priestess, she funded the largest building on the east side of the forum in her own name and her son's; the fullers set up a statue to her inside, and she built Pompeii's largest known tomb.",
+          "answer": "Eumachia",
+          "accept": "",
+          "note": "Contested: the building's function is debated (guild hall? cloth market? multi-purpose porticus?). Do not let a team assert it was \"the fullers' headquarters\" as fact.",
+          "source": "Study Guide, Part B (Women; Role of the forum); Source Study Guide core source bank"
+        },
+        {
+          "value": 300,
+          "clue": "The two senior annual magistrates of Pompeii, who presided over the council and the courts; every fifth year they were elected as quinquennales to conduct the census and revise the council roll.",
+          "answer": "The duoviri (duumviri iure dicundo)",
+          "accept": "\"Duumviri\", \"duoviri\" or \"duumvirs\". Do NOT accept \"aediles\" (the junior magistrates) or \"decuriones\" (the councillors).",
+          "note": "",
+          "source": "Study Guide, Part B (The machinery of government); Source Study Guide, Section 2 (Local political life)"
+        },
+        {
+          "value": 400,
+          "clue": "This freedwoman built a tomb in the Herculaneum Gate necropolis for herself, her freedmen and her husband Gaius Munatius Faustus — an Augustalis honoured with a bisellium. Its reliefs show a ship and a distribution scene.",
+          "answer": "Naevoleia Tyche",
+          "accept": "Spelling \"Nevoleia\" is fine.",
+          "note": "Watch for the common slip: her tomb is at Pompeii, on the road outside the Herculaneum Gate — not in Herculaneum. Mouritsen: freedmen are over-represented in epitaphs, so tombs exaggerate their share of the population.",
+          "source": "Study Guide, Part B (Women; Tombs); Source Study Guide, Section 2 (Social structure)"
+        },
+        {
+          "value": 500,
+          "clue": "Explain the significance: the Temple of Isis inscription says a six-year-old, Numerius Popidius Celsinus, rebuilt the temple \"from its foundations\" and was enrolled in the town council. Who really paid, why could he not take the seat himself, and what does this reveal about social mobility?",
+          "answer": "His father, Numerius Popidius Ampliatus, a freedman. Freedmen were barred from magistracies and the ordo, so he bought his freeborn son into the elite through religious benefaction — wealth could purchase status for the next generation (religion as a social ladder).",
+          "accept": "Award full points only for all three parts: the father / freedman status barred him / mobility bought for the next generation. Half points for two of the three.",
+          "note": "A second inscription (CIL X 847) has Ampliatus paying \"at his own expense\" in his own name on a statuette inside the temple — the family was not hiding the money, only keeping his name off the qualification. Cooley notes child co-option was \"not just a tactic\": other boys were councillors young.",
+          "source": "Study Guide, Part B (Freedmen); Source Study Guide, Section 2 (Religion; Social structure); Source Cards S25"
+        }
+      ]
+    },
+    {
+      "name": "Religion and Beliefs",
+      "clues": [
+        {
+          "value": 100,
+          "clue": "Found in nearly every home, shop and bar — usually in the atrium or kitchen — this shrine is where the paterfamilias led daily offerings to the dancing Lares, the genius and the Penates.",
+          "answer": "Lararium (plural: lararia)",
+          "accept": "\"Household shrine\" is fine.",
+          "note": "",
+          "source": "Study Guide, Part B (Household religion); Source Cards S27"
+        },
+        {
+          "value": 200,
+          "clue": "Popular with women, freedmen and slaves, this Egyptian goddess's temple behind the Large Theatre was the first public building fully rebuilt after the earthquake, and was found in 1764 with its cult apparatus in place.",
+          "answer": "Isis (the Temple of Isis)",
+          "accept": "",
+          "note": "",
+          "source": "Study Guide, Part B (Foreign cults); Source Study Guide, Section 2 (Religion)"
+        },
+        {
+          "value": 300,
+          "clue": "Because death was believed to pollute, these were built only outside the city walls, lining the roads from the Herculaneum and Nucerian Gates — where epitaphs turned the roadside into a permanent parade of status.",
+          "answer": "Tombs (the necropoleis / \"streets of tombs\")",
+          "accept": "\"Necropolis\", \"cemeteries\", \"tombs\" or \"graves\" all acceptable.",
+          "note": "Follow-up if you want more: cremation was standard; ashes in urns were marked by columellae (head-shaped stones), some with libation tubes. About 250 tombs and burials have been recorded.",
+          "source": "Study Guide, Part B (Tombs and funerary customs); Source Study Guide, Section 2 (Religion)"
+        },
+        {
+          "value": 400,
+          "clue": "Identify the source: a near-lifesize Second-Style frieze of some 29 figures in a suburban villa outside the Herculaneum Gate, usually read as a woman's initiation into a Dionysiac cult — though rival readings say drama, a myth cycle or pure decoration.",
+          "answer": "The Villa of the Mysteries frieze",
+          "accept": "\"Villa of the Mysteries\" or \"the Dionysiac frieze\" is enough.",
+          "note": "Contested: the interpretation is genuinely disputed (initiation? bridal preparation? theatrical scenes?). A team that names it AND flags the debate has answered at HSC standard.",
+          "source": "Study Guide, Part B (Dionysus/Bacchus); Source Cards S26"
+        },
+        {
+          "value": 500,
+          "clue": "Barred from magistracies, wealthy freedmen climbed instead through this college of priests of the imperial cult. Its hall at Herculaneum carries Hercules frescoes, and Gaius Munatius Faustus was a member.",
+          "answer": "The Augustales",
+          "accept": "\"Augustalis\", \"the college of the Augustales\" or \"priests of the imperial cult (Augustales)\".",
+          "note": "The identification of the Herculaneum building as the Augustales' seat is probable, not certain.",
+          "source": "Study Guide, Part B (Freedmen; Imperial cult; evidence table); Study Guide glossary"
+        }
+      ]
+    },
+    {
+      "name": "Sources and Evidence",
+      "clues": [
+        {
+          "value": 100,
+          "clue": "From 1863, Fiorelli filled the body-shaped cavities in Pompeii's hardened ash to capture the victims' final postures, clothing folds and even facial features. About 100 were made from roughly 1,150 victims.",
+          "answer": "The plaster casts (body casts)",
+          "accept": "\"Casts\" is enough.",
+          "note": "For discussion: the void is ancient; the plaster object is a 19th-century creation. Is a cast archaeological evidence, an interpretation, or a museum artefact? (Teacher Guide, S08.)",
+          "source": "Source Study Guide, core source bank; Source Cards S08; Study Guide, Part A"
+        },
+        {
+          "value": 200,
+          "clue": "Herculaneum's deep, airless burial under pyroclastic material preserved organic matter by this process — giving us wooden doors, beds, food and around 1,800 papyrus scrolls that Pompeii lost.",
+          "answer": "Carbonisation",
+          "accept": "\"Carbonised\" or \"charring without oxygen\" is fine.",
+          "note": "",
+          "source": "Study Guide glossary; Study Guide (Different burials, different evidence); Source Cards S09"
+        },
+        {
+          "value": 300,
+          "clue": "Which scholar? In 1882 he classified Pompeian wall painting into four styles — from the First (masonry/incrustation) to the Fourth (composite/intricate) — a framework still used to date rooms and renovations.",
+          "answer": "August Mau",
+          "accept": "\"Mau\" is enough.",
+          "note": "Limitation: the styles overlap and were deliberately revived, so they are not a precise dating instrument.",
+          "source": "Study Guide, Part A (19th century) and evidence table; Source Study Guide, Section 2"
+        },
+        {
+          "value": 400,
+          "clue": "Identify the source: about 153 wax tablets found in a banker's house at V.1.26 — mostly auction receipts from AD 52 to 62, with witness lists apparently ordered by social rank.",
+          "answer": "The wax tablets of Lucius Caecilius Iucundus",
+          "accept": "\"Caecilius Iucundus's tablets\" or \"the Iucundus archive\". Do NOT accept the Sulpicii/Murecine tablets (found outside Pompeii, recording business at Puteoli) or the Herculaneum tablets (Petronia Justa, Venidius Ennychus).",
+          "note": "Limitation: the archive stops in January AD 62 and records auctions only — not the whole economy. Sixteen tablets record dealings with the town itself (fullery tax, farm lease, market tax).",
+          "source": "Study Guide, Part B (Finance); Source Study Guide, core source bank; Source Cards S06, S07"
+        },
+        {
+          "value": 500,
+          "clue": "Explain the significance: HSC marker feedback has praised candidates who distinguish the work of Sara Bisel from that of Estelle Lazer. What did each study, and what did each conclude?",
+          "answer": "Bisel — the boat-chamber skeletons at Herculaneum (1980s): osteological and chemical analysis of 139 skeletons showing good nutrition, high seafood intake and markers of hard labour. Lazer — the disarticulated bones from Pompeii's bone stores (from 1986): the victims were a normal cross-section of ages and sexes, not just the old, sick, women and children; she later CT-scanned the casts (2015).",
+          "accept": "Full points for the correct city, the material studied and one finding for EACH woman. Half points if they get the cities right but only one finding.",
+          "note": "Bisel's lead-poisoning suggestions are now treated with caution, and her sample was small by later standards.",
+          "source": "Study Guide (What markers reward; Health); Source Cards S19, S20; Teacher Guide notes"
+        }
+      ]
+    },
+    {
+      "name": "Reconstruction, Conservation and Ethics",
+      "clues": [
+        {
+          "value": 100,
+          "clue": "On 6 November 2010, after torrential rain, this building on the Via dell'Abbondanza collapsed, making world headlines (\"Italy's Shame\") and triggering the €105 million Great Pompeii Project.",
+          "answer": "The Schola Armaturarum (the \"House of the Gladiators\")",
+          "accept": "Either the Latin or the English name.",
+          "note": "It reopened on 3 January 2019 after a three-year restoration. Its collapse was multi-factorial: rain, old bomb damage from 1943, a concrete roof, blocked drainage.",
+          "source": "Study Guide, Part C (Neglect and mismanagement); Source Study Guide, Section 3; Source Cards S28"
+        },
+        {
+          "value": 200,
+          "clue": "Which director? In charge from 1924 to 1961 and funded by Mussolini's regime, he excavated the Villa of the Mysteries and opened Herculaneum on a grand scale — but left thin records, used damaging reinforced concrete and staged finds for visitors.",
+          "answer": "Amedeo Maiuri",
+          "accept": "\"Maiuri\" is enough.",
+          "note": "Also the author of the \"crisis theory\" of post-earthquake decline, challenged by Wallace-Hadrill, Dobbins, Ling and Cooley.",
+          "source": "Study Guide, Part A (20th century) and Part C; Source Study Guide, Section 3; Source Cards S31, S33"
+        },
+        {
+          "value": 300,
+          "clue": "Begun in 2001, this partnership between the philanthropist David Packard, the Italian authorities and the British School at Rome repaired roofs and revived the ancient sewers as working drains; UNESCO calls it a model public–private partnership for cultural heritage.",
+          "answer": "The Herculaneum Conservation Project (HCP)",
+          "accept": "\"HCP\" or \"the Packard project at Herculaneum\".",
+          "note": "Led by Andrew Wallace-Hadrill; Packard committed US$10 million a year for ten years. Limitation: it depends on one donor's continuity, and Herculaneum's small size makes the model hard to scale up to Pompeii.",
+          "source": "Study Guide, Part C (The responses); Source Study Guide, Section 3"
+        },
+        {
+          "value": 400,
+          "clue": "Declared in 1999 by superintendent Pietro Giovanni Guzzo, this decision left roughly a third of Pompeii unexcavated as a \"bank for the future\" — on the principle that excavation is destruction.",
+          "answer": "The moratorium on new excavation",
+          "accept": "\"A ban/halt on new excavation\" or \"the 1999 moratorium\".",
+          "note": "The Region V digs from 2018 were justified as conservation of the excavation front, not as new excavation — evidence of how loaded the word has become.",
+          "source": "Study Guide, Part A (After 1961) and Part C (To dig or not to dig?)"
+        },
+        {
+          "value": 500,
+          "clue": "Explain the significance: in 2015 the Pompeii Cast Project used a 16-slice CT scanner on 86 casts. What did the scans reveal inside the casts, and why is this project the standard example of an ethically improved method?",
+          "answer": "They revealed real bones with surprisingly good teeth (low-sugar, high-fibre diet), ages and injuries — but also metal rods, incomplete skeletons and heavy 19th-century re-sculpting, so the casts are part-Roman, part-Victorian artefact. It is ethically improved because CT scanning is non-invasive: it recovers data without damaging the remains, unlike casting or physical examination.",
+          "accept": "Full points for one finding (either the health data or the modern restoration material) PLUS the non-invasive point. Half points for only one of the two.",
+          "note": "This post-dates Bradley's 3rd edition (2018), which describes only X-raying of casts. The sample is casts made since 1863, not all victims.",
+          "source": "Study Guide, Part C (Human remains: from props to patients; Ethics); Source Cards S32; Teacher Guide notes"
+        }
+      ]
+    }
+  ],
+  "final": {
+    "category": "Tourism — value and impact",
+    "clue": "\"Pompeii is preserved and destroyed by the same four million people each year.\" Do you agree? Support your judgement with ONE specific problem tourism causes, ONE specific management solution introduced at the sites, and a verdict on whether the tension can ever be resolved.",
+    "answer": "A judgement supported by named evidence. VALUE: roughly €20 million a year in ticket sales; a record 4 million-plus visitors in 2024; tourism builds the public and political will that funds conservation — global coverage of the 2010 collapse produced the €105 million Great Pompeii Project. PROBLEMS (any one): wear on the honeypot routes such as the Via dell'Abbondanza; theft and vandalism (c. 600 objects 1975–2000); cruise-ship crowding; revenue historically spent on facilities rather than preservation (five qualified maintenance staff in 2010). SOLUTIONS (any one): the November 2024 daily cap of 20,000 with personalised tickets (Zuchtriegel: \"reduce human pressure on the site\"); rotating which houses are open; dispersal to Herculaneum, Oplontis and Boscoreale; virtual tours and 3D models; the Herculaneum model of funding conservation independently of ticket revenue. VERDICT: the tension is manageable but permanent — there is no solved state, only balance.",
+    "accept": "Score as an HSC extended response in miniature: 1 = a bare judgement; 2 = judgement plus a problem OR a solution; 3 = judgement plus a named problem AND a named solution; 4 = all of that plus a reasoned verdict that weighs value against damage.",
+    "note": "Contested: June 2025 reports (guides' association president Paolo Mazzarella) suggest the cap has not solved congestion and may have made queues worse — but guides lose income to queues, so this is interested evidence. A team that raises this is working at the top band.",
+    "source": "Study Guide, Part C (Value and impact of tourism); Source Study Guide, Section 3 (Tourism)"
+  }
+};
+
+/* =====================================================================
+   GAME LOGIC — you should not need to edit below this line
+   ===================================================================== */
+const STORAGE_KEY = 'vesuvius-jeopardy-state-v1';
+const MAX_TEAMS = 5;
+
+let state = {
+  teamCount: 3,
+  teams: ['Team 1', 'Team 2', 'Team 3', 'Team 4', 'Team 5'],
+  scores: [0, 0, 0, 0, 0],
+  done: {},          // "cat-value": true when a tile has been played
+  finalPlayed: false
+};
+
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) { const s = JSON.parse(raw); if (s && s.teams && s.scores) state = Object.assign(state, s); }
+  } catch (e) {}
+}
+
+const $ = (id) => document.getElementById(id);
+function sizeClass(base, text) {
+  const n = (text || '').length;
+  return base + ' ' + (n < 130 ? 'short' : n < 260 ? 'medium' : 'long');
+}
+const board = $('board');
+const scoresEl = $('scores');
+const overlay = $('overlay');
+
+/* ---------- Board ---------- */
+function renderBoard() {
+  board.innerHTML = '';
+  GAME.categories.forEach((cat) => {
+    const h = document.createElement('div');
+    h.className = 'cat';
+    h.textContent = cat.name;
+    board.appendChild(h);
+  });
+  const rows = 5;
+  for (let r = 0; r < rows; r++) {
+    GAME.categories.forEach((cat, ci) => {
+      const clue = cat.clues[r];
+      const key = ci + '-' + clue.value;
+      const t = document.createElement('button');
+      t.className = 'tile' + (state.done[key] ? ' done' : '');
+      t.textContent = clue.value;
+      t.setAttribute('aria-label', cat.name + ' for ' + clue.value);
+      t.disabled = !!state.done[key];
+      t.addEventListener('click', () => openClue(ci, r));
+      board.appendChild(t);
+    });
+  }
+  const allDone = GAME.categories.every((cat, ci) => cat.clues.every(c => state.done[ci + '-' + c.value]));
+  $('finalBtn').classList.toggle('primary', allDone && !state.finalPlayed);
+}
+
+/* ---------- Scoreboard ---------- */
+function teamCard(i, delta) {
+  const card = document.createElement('div');
+  card.className = 'team';
+  const name = document.createElement('input');
+  name.className = 'name'; name.value = state.teams[i]; name.title = 'Click to rename this team';
+  name.addEventListener('change', () => { state.teams[i] = name.value || ('Team ' + (i + 1)); save(); renderScores(); });
+  const score = document.createElement('div');
+  score.className = 'score'; score.textContent = state.scores[i];
+  const adj = document.createElement('div');
+  adj.className = 'adj';
+  const minus = document.createElement('button');
+  minus.className = 'minus'; minus.textContent = '−'; minus.title = 'Subtract ' + delta;
+  minus.addEventListener('click', () => adjust(i, -delta));
+  const plus = document.createElement('button');
+  plus.className = 'plus'; plus.textContent = '+'; plus.title = 'Add ' + delta;
+  plus.addEventListener('click', () => adjust(i, delta));
+  adj.append(minus, plus);
+  card.append(name, score, adj);
+  return card;
+}
+function renderScores() {
+  scoresEl.innerHTML = '';
+  for (let i = 0; i < state.teamCount; i++) scoresEl.appendChild(teamCard(i, 100));
+  $('teamCount').textContent = state.teamCount;
+  if (!overlay.hidden && current) renderOverlayScores();
+}
+function adjust(i, delta) {
+  state.scores[i] += delta;
+  save();
+  renderScores();
+}
+
+/* ---------- Clue overlay ---------- */
+let current = null;   // { ci, r, clue, isDD, stage }  stage: 'dd' | 'clue' | 'answer' | 'final'
+
+function isDailyDouble(ci, clue) {
+  return GAME.dailyDouble && GAME.dailyDouble.category === ci && GAME.dailyDouble.value === clue.value;
+}
+
+function openClue(ci, r) {
+  const cat = GAME.categories[ci];
+  const clue = cat.clues[r];
+  const dd = isDailyDouble(ci, clue);
+  current = { ci, r, clue, isDD: dd, stage: dd ? 'dd' : 'clue', points: dd ? clue.value * 2 : clue.value };
+  $('ovCat').textContent = cat.name;
+  $('ovValue').textContent = current.points + ' points';
+  $('ovDD').hidden = !dd;
+  $('finalTeams').hidden = true;
+  $('ovAnswer').hidden = true;
+  $('ovAnswer').textContent = clue.answer;
+  $('ovAnswer').className = sizeClass('ov-answer', clue.answer);
+  $('ovClue').textContent = clue.clue;
+  $('ovClue').className = sizeClass('ov-clue', clue.clue);
+  if (dd) {
+    $('ddSplash').hidden = false;
+    $('ovClue').hidden = true;
+    $('ovHint').textContent = 'Daily Double: this clue is worth double — ' + current.points + ' points. Click "Show clue" when the team is ready.';
+  } else {
+    $('ddSplash').hidden = true;
+    $('ovClue').hidden = false;
+    $('ovHint').textContent = 'Press Space or Enter to reveal the answer, then again to return to the board. Esc returns without marking the tile.';
+  }
+  renderOverlayButtons();
+  renderOverlayScores();
+  overlay.hidden = false;
+}
+
+function renderOverlayButtons() {
+  const b = $('ovButtons');
+  b.innerHTML = '';
+  const mk = (label, cls, fn) => { const x = document.createElement('button'); x.className = 'btn ' + cls; x.textContent = label; x.addEventListener('click', fn); b.appendChild(x); return x; };
+  if (current.stage === 'dd') {
+    mk('Show clue', 'primary', advance);
+  } else if (current.stage === 'clue') {
+    mk('Reveal answer', 'primary', advance);
+    mk('Back to board (keep tile)', '', () => closeOverlay(false));
+  } else if (current.stage === 'answer') {
+    mk('Back to board', 'primary', () => closeOverlay(true));
+  } else if (current.stage === 'final') {
+    mk('Reveal model answer', 'primary', () => { $('ovAnswer').hidden = false; });
+    mk('Close', '', () => { state.finalPlayed = true; save(); closeOverlay(false); });
+  }
+}
+
+function renderOverlayScores() {
+  const s = $('ovScores');
+  s.innerHTML = '';
+  if (!current || current.stage === 'final') return;
+  for (let i = 0; i < state.teamCount; i++) s.appendChild(teamCard(i, current.points));
+}
+
+function advance() {
+  if (!current) return;
+  if (current.stage === 'dd') {
+    current.stage = 'clue';
+    $('ddSplash').hidden = true;
+    $('ovClue').hidden = false;
+    $('ovHint').textContent = 'Press Space or Enter to reveal the answer, then again to return to the board.';
+  } else if (current.stage === 'clue') {
+    current.stage = 'answer';
+    $('ovAnswer').hidden = false;
+  } else if (current.stage === 'answer') {
+    closeOverlay(true);
+    return;
+  } else if (current.stage === 'final') {
+    $('ovAnswer').hidden = false;
+    return;
+  }
+  renderOverlayButtons();
+}
+
+function closeOverlay(markDone) {
+  if (current && markDone && current.stage !== 'final') {
+    state.done[current.ci + '-' + current.clue.value] = true;
+    save();
+  }
+  current = null;
+  overlay.hidden = true;
+  renderBoard();
+  renderScores();
+}
+
+/* ---------- Final Jeopardy ---------- */
+function openFinal() {
+  const f = GAME.final;
+  current = { stage: 'final', points: 0 };
+  $('ovCat').textContent = 'Final Jeopardy — ' + f.category;
+  $('ovValue').textContent = 'Wager';
+  $('ovDD').hidden = true;
+  $('ddSplash').hidden = true;
+  $('ovClue').hidden = false;
+  $('ovClue').textContent = f.clue;
+  $('ovClue').className = sizeClass('ov-clue', f.clue);
+  $('ovAnswer').textContent = f.answer;
+  $('ovAnswer').className = 'ov-answer long';
+  $('ovAnswer').hidden = true;
+  $('ovHint').textContent = 'Each team writes a wager (up to their current score), then answers. Mark each team Correct or Wrong to apply the wager.';
+  const ft = $('finalTeams');
+  ft.innerHTML = '';
+  ft.hidden = false;
+  for (let i = 0; i < state.teamCount; i++) {
+    const card = document.createElement('div');
+    card.className = 'final-team';
+    card.innerHTML = '<span class="sc" data-sc>' + state.scores[i] + '</span><div class="nm">' + escapeHtml(state.teams[i]) + '</div>' +
+      '<label>Wager</label><input class="wager" type="number" min="0" value="0">' +
+      '<div class="fbtns"><button class="ok">Correct</button><button class="no">Wrong</button></div>';
+    const wager = card.querySelector('.wager');
+    const ok = card.querySelector('.ok');
+    const no = card.querySelector('.no');
+    const applyWager = (sign) => {
+      const w = Math.max(0, parseInt(wager.value, 10) || 0);
+      state.scores[i] += sign * w;
+      save();
+      card.querySelector('[data-sc]').textContent = state.scores[i];
+      ok.disabled = no.disabled = true;
+      wager.disabled = true;
+      renderScores();
+    };
+    ok.addEventListener('click', () => applyWager(1));
+    no.addEventListener('click', () => applyWager(-1));
+    ft.appendChild(card);
+  }
+  renderOverlayButtons();
+  $('ovScores').innerHTML = '';
+  overlay.hidden = false;
+}
+
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+/* ---------- Header buttons & keyboard ---------- */
+$('teamsBtn').addEventListener('click', () => {
+  state.teamCount = state.teamCount >= MAX_TEAMS ? 2 : state.teamCount + 1;
+  save(); renderScores();
+});
+$('finalBtn').addEventListener('click', openFinal);
+$('resetBtn').addEventListener('click', () => {
+  if (!confirm('Clear the board and reset all scores to zero?')) return;
+  state.done = {}; state.scores = [0, 0, 0, 0, 0]; state.finalPlayed = false;
+  save(); renderBoard(); renderScores();
+});
+document.addEventListener('keydown', (e) => {
+  if (overlay.hidden) return;
+  if (e.target && (e.target.tagName === 'INPUT')) return;
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); advance(); }
+  if (e.key === 'Escape') { e.preventDefault(); if (current && current.stage === 'final') { state.finalPlayed = true; save(); } closeOverlay(false); }
+});
+// Clicking the clue text itself also advances (handy with a wireless mouse)
+$('ovBody').addEventListener('click', (e) => {
+  if (!current || current.stage === 'final') return;
+  if (e.target.closest('.team') || e.target.closest('button') || e.target.closest('input')) return;
+  advance();
+});
+
+/* ---------- Start ---------- */
+load();
+renderBoard();
+renderScores();
+</script>
+</body>
+</html>
